@@ -21,13 +21,13 @@ function CategoryMenu() {
     <div className="menu">
       {category.slice(0, 10).map((category) => (
         <li key={category.id} className="nav-item">
-          <Link to={`/category/${category.id}`}>{category.ten}</Link>
+          <Link to={`/categories/${category.id}`}>{category.ten}</Link>
           {category.tags.length > 0 && (
             <div className="tag">
               <ul className="sub-menu">
                 {category.tags.map((tag) => (
                   <li key={tag.id}>
-                    <Link to={`/category/${tag.id}`}title={tag.ten} href=".">
+                    <Link to={`/categories/${tag.id}`}title={tag.ten} href=".">
                       {tag.ten}
                     </Link>
                   </li>
