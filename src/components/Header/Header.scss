@@ -1,0 +1,116 @@
+.header{
+    background-color: #fff;
+.header-top {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    // padding: 0 20px;
+  }
+  
+  .logo-time {
+    display: flex;
+    align-items: center;
+  
+    .time {
+      color: #787878;
+      font-family: Roboto;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      padding-top: 10px;
+      margin-left: 20px;
+    }
+  }
+  
+  .form-inline {
+    position: relative;
+  
+    .form-control {
+      width: 407px;
+      height: 35px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fafafa;
+  
+      &::placeholder {
+        color: #aaa;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+    }
+  
+    .btn {
+      position: absolute;
+      outline: none;
+      border: none;
+      top: 0;
+      bottom: 0;
+      right: 15px;
+    }
+  }
+  
+  .header-bottom {
+    width: 100%;
+    height: 40px;
+    background-color: var(--primary-color);
+  
+    .navbar {
+      padding: 0;
+      width: 100%;
+  
+      .collapse {
+        height: 100%;
+      }
+  
+      .navbar-nav {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+  
+        .icon-actions {
+          height: 100%;
+          position: relative;
+          width: 87px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+  
+          li {
+            height: 100%;
+            display: flex;
+            align-items: center;
+          }
+  
+          .icon-home {
+            padding: 0 7px;
+  
+            &:hover {
+              background-color: var(--primary-hover-color);
+            }
+  
+            &::before {
+              content: "";
+              position: absolute;
+              top: 50%;
+              right: 43px;
+              width: 2px;
+              height: 20px;
+              background: #ffffff80;
+              transform: translateY(-50%);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+}
