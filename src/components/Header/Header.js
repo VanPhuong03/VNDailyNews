@@ -5,7 +5,6 @@ import images from '../../assets/imgs'
 import "./Header.scss"
 import CurrentTime from "../CurrentTime";
 import CategoryMenu from "../CategoryMenu/CategoryMenu";
-
 function Header() {
     return ( 
         <div className="header">

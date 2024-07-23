@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import API_ENDPOINTS from "../../config/aip";
 import "./CategoryMenu.scss";
 
 function CategoryMenu() {
@@ -8,7 +9,7 @@ function CategoryMenu() {
   useEffect(() => {
     // Gọi API để lấy danh mục
     axios
-      .get("http://localhost:5000/api/v1/categorys")
+      .get(`${API_ENDPOINTS.CATEGORYS}`)
       .then((response) => {
         setCategories(response.data.data);
       })
@@ -27,7 +28,7 @@ function CategoryMenu() {
               <ul className="sub-menu">
                 {category.tags.map((tag) => (
                   <li key={tag.id}>
-                    <Link to={`/categories/${tag.id}`}title={tag.ten} href=".">
+                    <Link to={`/tags/${tag.id}`} title={tag.ten} href=".">
                       {tag.ten}
                     </Link>
                   </li>
@@ -42,3 +43,4 @@ function CategoryMenu() {
 }
 
 export default CategoryMenu;
+

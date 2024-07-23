@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import API_ENDPOINTS from "../../config/aip";
 
 function ArticleList() {
   const [articlelist, setNews] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/v1/news/new")
+      .get(`${API_ENDPOINTS.NEWS}/new`)
       .then((response) => {
         setNews(response.data.data);
       })

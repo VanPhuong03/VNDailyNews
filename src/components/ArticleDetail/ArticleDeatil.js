@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import API_ENDPOINTS from "../../config/aip";
 import axios from "axios";
 
 const Article = () => {
@@ -8,7 +9,7 @@ const Article = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/news/${id}`)
+      .get(`${API_ENDPOINTS.NEWS}/${id}`)
       .then((response) => {
         setArticle(response.data.data);
       })
