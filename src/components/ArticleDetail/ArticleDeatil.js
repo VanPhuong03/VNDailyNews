@@ -1,22 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import API_ENDPOINTS from "../../config/aip";
 import axios from "axios";
 
 const Article = () => {
-  const { id } = useParams();  // Lấy ID từ URL
+  const { id } = useParams(); // Lấy ID từ URL
   const [article, setArticle] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get(`${API_ENDPOINTS.NEWS}/${id}`)
-      .then((response) => {
-        setArticle(response.data.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the article!", error);
-      });
+  // Hàm kiểm tra và cập nhật lượt xem
+  const updateViewCount = useCallback(async () => {
+    const viewedArticles =
+      JSON.parse(localStorage.getItem("viewedArticles")) || [];
+
+    if (!viewedArticles.includes(id)) {
+      try {
+        await axios.put(`${API_ENDPOINTS.NEWS}/${id}`);
+        viewedArticles.push(id);
+        localStorage.setItem("viewedArticles", JSON.stringify(viewedArticles));
+      } catch (error) {
+        console.error("Đã xảy ra lỗi khi cập nhật số lượng lượt xem", error);
+      }
+    }
   }, [id]);
+
+  useEffect(() => {
+    const fetchArticle = async () => {
+      try {
+        const response = await axios.get(`${API_ENDPOINTS.NEWS}/${id}`);
+        setArticle(response.data.data);
+        updateViewCount(); // Cập nhật lượt xem sau khi lấy dữ liệu thành công
+      } catch (error) {
+        console.error("Đã xảy ra lỗi khi tìm dữ liệu bài viết", error);
+      }
+    };
+
+    fetchArticle();
+  }, [id, updateViewCount]); // Thêm updateViewCount vào mảng phụ thuộc
 
   if (!article) return <div>Loading...</div>;
 
@@ -33,9 +52,9 @@ const Article = () => {
           ))}
       </div>
 
-      <h1>{inforNews.tiede}</h1>
+      <h1>{inforNews.tieude}</h1>
       <p>{inforNews.noidungtomtat}</p>
-      <img src={inforNews.anhdaidien} alt={inforNews.tiede} />
+      <img src={inforNews.anhdaidien} alt={inforNews.tieude} />
 
       <div className="content-details">
         {JSON.parse(inforNews.noidungchitiet).map((content, index) => {
@@ -66,4 +85,3 @@ const Article = () => {
 };
 
 export default Article;
-

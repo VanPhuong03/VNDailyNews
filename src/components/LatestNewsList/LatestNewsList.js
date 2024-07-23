@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import API_ENDPOINTS from "../../config/aip";
 
-function ArticleList() {
+function LatestNewsList() {
   const [articlelist, setNews] = useState([]);
 
   useEffect(() => {
@@ -20,12 +20,12 @@ function ArticleList() {
 
   return (
     <div className="article-list">
-      {articlelist.map((article) => (
-        <div key={article.id} className="article-item">
-          <h2>{article.tieude}</h2>
-          <p>{article.noidungtomtat}</p>
-          <img src={article.anhdaidien} alt={article.tieude} className="article-image" />
-          <Link to={`/newsdetail/${article.id}`}>Xem chi tiết</Link>
+      {articlelist.map((news) => (
+        <div key={news.id} className="news-item">
+          <h2>{news.tieude}</h2>
+          <p>{news.noidungtomtat}</p>
+          <img src={news.anhdaidien} alt={news.tieude} className="news-image" />
+          <Link to={`/newsdetail/${news.id}`}>Xem chi tiết</Link>
         </div>
       ))}
       <p>Danh sách bài đăng</p>
@@ -33,4 +33,4 @@ function ArticleList() {
   );
 }
 
-export default ArticleList;
+export default LatestNewsList;
