@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import API_ENDPOINTS from "../../config/aip";
+import API_ENDPOINTS from "../../config/api";
 import RecommenNewsList from "../../components/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "../../components/LatestNewsList/LatestNewsList";
 import "./Home.scss";

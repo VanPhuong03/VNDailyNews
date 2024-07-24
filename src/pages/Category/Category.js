@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // thư viện thực hiện các yêu cầu từ HTTP
-import API_ENDPOINTS from "../../config/aip";
+import API_ENDPOINTS from "../../config/api";
 import { useParams } from "react-router-dom";
 
 // import API_ENDPOINTS from "../../config/aip";

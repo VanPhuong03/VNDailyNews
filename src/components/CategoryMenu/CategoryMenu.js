@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import API_ENDPOINTS from "../../config/aip";
+import API_ENDPOINTS from "../../config/api";
 import "./CategoryMenu.scss";
 
 function CategoryMenu() {
