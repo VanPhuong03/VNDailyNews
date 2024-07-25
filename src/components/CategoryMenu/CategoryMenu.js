@@ -22,7 +22,7 @@ function CategoryMenu() {
     <div className="menu">
       {category.slice(0, 10).map((category) => (
         <li key={category.id} className="nav-item">
-          <Link to={`/categories/${category.id}`}>{category.ten}</Link>
+          <Link to={`/categorys/${category.id}`}>{category.ten}</Link>
           {category.tags.length > 0 && (
             <div className="tag">
               <ul className="sub-menu">

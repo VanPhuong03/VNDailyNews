@@ -1,81 +1,75 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // thư viện thực hiện các yêu cầu từ HTTP
 import API_ENDPOINTS from "../../config/api";
-import { useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom"; // lấy tham số từ url người dùng chọn
+import NewsByTag from "../../components/NewsByTags/NewByTag";
 // import API_ENDPOINTS from "../../config/aip";
 
 function CategoryPage() {
   const { id } = useParams();
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState([]);
+  const [newsNewList, setNewsNewsList] = useState([]);
+  const [newsMostViewedList, setNewsMostViewedList] = useState([]);
+  const [newsByTagListOfCategory, setNewsByTagListOfCategory] = useState([]);
 
   useEffect(() => {
-    const fetchCategory = async () => {
-      try {
-        // Lấy dữ liệu của danh mục
-        const response = await axios.get(
-          `${API_ENDPOINTS.DABOARD_NEWS}?page=1&limit=10&category_id=${id}`
-        );
-        const categoryData = response.data.data.find(
-          (cat) => cat.id === parseInt(id)
-        );
-
-        // Lấy chi tiết từng bài viết để thêm ảnh đại diện
-        if (categoryData) {
-          const updatedNews = await Promise.all(
-            categoryData.news.map(async (news) => {
-              const detailResponse = await axios.get(
-                 `${API_ENDPOINTS.NEWS}/${news.id}`
-              );
-              return {
-                ...news,
-                anhdaidien: detailResponse.data.data.inforNews.anhdaidien,
-              };
-            })
-          );
-
-          setCategory({ ...categoryData, news: updatedNews });
-        }
-      } catch (error) {
-        console.error("Error fetching category:", error);
-      }
-    };
-
-    fetchCategory();
+    axios
+      .get(`${API_ENDPOINTS.CATEGORYS}/${id}`)
+      .then((response) => {
+        setCategory(response.data.data.category);
+        setNewsNewsList(response.data.data.newsNewList);
+        setNewsMostViewedList(response.data.data.newsMostViewedList);
+        setNewsByTagListOfCategory(response.data.data.newsByTagListOfCategory);
+      })
+      .catch((error) => {
+        console.error("Có lỗi xảy ra khi gọi API:", error); // In lỗi ra console
+      });
   }, [id]);
-
-  if (!category) {
-    return <div>Loading...</div>;
-  }
+  console.log(category);
+  console.log(newsNewList);
+  console.log(newsMostViewedList);
+  console.log(newsByTagListOfCategory);
 
   return (
     <div className="category-page content container">
-      <h2>{category.ten}</h2>
-      <div className="tags">
-        {category.tags.map((tag) => (
-          <span key={tag.id} className="tag">
-            {tag.ten}
-          </span>
+      <ul className="d-flex  align-items-center ">
+        <h1 className="pr-1"> {category.ten}</h1>
+        {newsByTagListOfCategory.map((newslist) => (
+          <li key={newslist.id} className="p-2">
+            <a href={`/tags/${newslist.id}`}>{newslist.ten}</a>
+          </li>
         ))}
-      </div>
-      <div className="articles">
-        {category.news.map((news) => (
-          <div key={news.id} className="article">
-            <h3>{news.tieude}</h3>
-            {news.anhdaidien && (
-              <img
-                src={news.anhdaidien}
-                alt={news.tieude}
-                className="article-image"
-              />
-            )}
-            <p>{news.noidungtomtat}</p>
-            <p>
-              <strong>Ngày đăng:</strong> {news.ngaydang}
-            </p>
-            <a href={`/newsdetail/${news.id}`}>xem thêm</a>
+      </ul>
+      <h1>danh sách tin tức mới nhất theo danh mục</h1>
+      <div className="newsNewList">
+        {newsNewList.map((newslist) => (
+          <div key={newslist.id}>
+            <a href={`/newsdetail/${newslist.id}`}>
+              <img src={newslist.anhdaidien} alt={newslist.tieude}></img>
+            </a>
+            <a href={`/newsdetail/${newslist.id}`}>
+              <h3>{newslist.tieude}</h3>
+            </a>
+
+            <p>{newslist.noidungtomtat}</p>
           </div>
         ))}
+      </div>
+      <h1>danh sách tin tức có view cao nhất theo danh mục</h1>
+      <div className="newsMostViewedList">
+        {newsMostViewedList.map((newslist) => (
+          <div key={newslist.id}>
+            <a href={`/newsdetail/${newslist.id}`}>
+              <img src={newslist.anhdaidien} alt={newslist.tieude}></img>
+            </a>
+            <h3>{newslist.tieude}</h3>
+            <p>{newslist.noidungtomtat}</p>
+          </div>
+        ))}
+      </div>
+      <h1> danh sách tin tức theo thể loại của danh mục</h1>
+      <div className="newsByTagListOfCategory">
+        <NewsByTag newsByTagListOfCategory={newsByTagListOfCategory} />
       </div>
     </div>
   );

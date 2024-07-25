@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import API_ENDPOINTS from "../../config/api";
@@ -7,12 +6,13 @@ import ArticleDetail from "../../components/ArticleDetail/ArticleDeatil";
 import SimilarNews from "../../components/SimilarNews/SimilarNews";
 
 const NewsDetailPage = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // lấy ID từ url khi người dùng ấn vào bài viết
   const [article, setArticle] = useState(null);
 
   const updateViewCount = useCallback(async () => {
+    // hàm kiểm tra bài viết đã được xem chưa và cập nhật số lượt xem nếu chưa
     const viewedArticles =
-      JSON.parse(localStorage.getItem("viewedArticles")) || [];
+      JSON.parse(localStorage.getItem("viewedArticles")) || []; // lưu id bài viết vào bộ nhớ lưu trữ cục bộ
 
     if (!viewedArticles.includes(id)) {
       try {
@@ -40,9 +40,7 @@ const NewsDetailPage = () => {
   }, [id, updateViewCount]);
 
   if (!article) return <div>Loading...</div>;
-
   const { inforNews, tags, newsSimilarList } = article;
-  console.log(inforNews.noidungchitiet)
 
   return (
     <div className="news-detail-page container content">
@@ -53,7 +51,3 @@ const NewsDetailPage = () => {
 };
 
 export default NewsDetailPage;
-
-
-
-

@@ -1,117 +1,100 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import API_ENDPOINTS from "../../config/api";
 import RecommenNewsList from "../../components/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "../../components/LatestNewsList/LatestNewsList";
 import "./Home.scss";
 
 function Home() {
-  const [topArticle, setTopArticle] = useState(null);
-  const [categories, setCategories] = useState([]);
-
+  const [homedata, setNewsData] = useState([]);
+  const [topViewedNews, setTopViewedNews] = useState([null]);
   useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        // Lấy danh sách bài viết từ API trang chủ
-        const response = await axios.get(
-          `${API_ENDPOINTS.DABOARD_NEWS}?page=1&limit=10`
-        );
-        const categoriesData = response.data.data;
-
-        // Lấy chi tiết từng bài viết từ API `ArticleDetail` để thêm ảnh đại diện
-        const updatedCategories = await Promise.all(
-          categoriesData.map(async (category) => {
-            const updatedNews = await Promise.all(
-              category.news.map(async (news) => {
-                const detailResponse = await axios.get(
-                  `${API_ENDPOINTS.NEWS}/${news.id}`
-                );
-                return {
-                  ...news,
-                  anhdaidien: detailResponse.data.data.inforNews.anhdaidien,
-                  views: detailResponse.data.data.inforNews.soluotxem,
-                };
-              })
-            );
-            return { ...category, news: updatedNews };
-          })
-        );
-
-        // Tìm bài viết có số lượt xem cao nhất
-        const allNews = updatedCategories.flatMap((category) => category.news);
-        const articleWithMaxViews = allNews.reduce((max, article) => {
-          return article.views > max.views ? article : max;
-        }, allNews[0]); // Khởi tạo với bài viết đầu tiên
-
-        setTopArticle(articleWithMaxViews);
-        setCategories(updatedCategories); // Lưu trữ dữ liệu cập nhật vào state
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchArticles();
+    axios
+      .get(`${API_ENDPOINTS.DABOARD_NEWS}?page=1&limit=10`)
+      .then((response) => {
+        const data = response.data.data;
+        console.log(data);
+        setNewsData(response.data.data);
+        let topNews = null;
+        data.forEach((category) => {
+          category.news.forEach((newsItem) => {
+            if (!topNews || newsItem.soluotxem > topNews.soluotxem) {
+              topNews = newsItem;
+            }
+          });
+        });
+        setTopViewedNews(topNews);
+      })
+      .catch((error) => {
+        console.error("Có lỗi xảy ra khi gọi API:", error);
+      });
   }, []);
-  if (!topArticle) return <div>Loading...</div>;
+  console.log(topViewedNews);
   return (
-    <div className="content container">
-      <h1>Bài viết có lượt xem nhiều nhất</h1>
-      <div className="top-article">
-        <div className="article-details">
-          <h2>{topArticle.tieude}</h2>
-          {topArticle.anhdaidien && (
-            <img
-              src={topArticle.anhdaidien}
-              alt={topArticle.tieude}
-              className="article-image"
-            />
-          )}
-          <p>{topArticle.noidungtomtat}</p>
-          <a href={`/newsdetail/${topArticle.id}`}>Đọc thêm</a>
-        </div>
-      </div>
-      <h1>Danh sách bài viết đề cử theo từng danh mục</h1>
-      <div>
-        {categories.map((category) => (
-          <div key={category.id} className="category">
-            <h2>{category.ten}</h2>
-            <div className="tags">
-              {category.tags.map((tag) => (
-                <span key={tag.id} className="tag">
-                  {tag.ten}
-                </span>
-              ))}
-            </div>
-            <div className="articles">
-              {category.news.map((news) => (
-                <div key={news.id} className="article">
-                  <h3>{news.tieude}</h3>
-                  {news.anhdaidien && (
-                    <img
-                      src={news.anhdaidien}
-                      alt={news.tieude}
-                      className="article-image"
-                    />
-                  )}
-                  <p>{news.noidungtomtat}</p>
-                  <p>
-                    <strong>Ngày đăng:</strong> {news.ngaydang}
-                  </p>
-                  <a href={`/newsdetail/${news.id}`}>xem thêm</a>
+    <div className="container content">
+      <Container>
+        <Row>
+          <Col sm={8}>
+            <div className="content-left">
+              <h1>Bài viết có lượt xem cao nhất</h1>
+              <div className="top_news-view">
+                <a href={`/newsdetail/${topViewedNews.id}`}>
+                  <img
+                    src={topViewedNews.anhdaidien}
+                    alt={topViewedNews.tieude}
+                  ></img>
+                </a>
+                <h1>
+                  <a href={`/newsdetail/${topViewedNews.id}`}>
+                    {topViewedNews.tieude}
+                  </a>
+                </h1>
+                <p>{topViewedNews.noidungtomtat}</p>
+              </div>
+              {homedata.map((category) => (
+                <div key={category.id} className="home">
+                  <h1>{category.ten}</h1>
+                  <div className="tags">
+                    {category.tags.map((tag) => (
+                      <span key={tag.id} className="tag">
+                        {tag.ten}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="news">
+                    {category.news.map((newsItem) => (
+                      <div key={newsItem.id}>
+                        <a href={`/newsdetail/${newsItem.id}`}>
+                          {" "}
+                          <img
+                            src={newsItem.anhdaidien}
+                            alt={newsItem.tieude}
+                          ></img>
+                        </a>
+                        <h1>
+                          <a href={`/newsdetail/${newsItem.id}`}>
+                            {newsItem.tieude}
+                          </a>
+                        </h1>
+                        <p>{newsItem.noidungtomtat}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-        ))}
-      </div>
-      <div>
-        <h1>danh sách bài viết mới nhất</h1>
-        <LatestNewsList />
-      </div>
-      <div>
-        <h1>danh sách bài viết đề xuất</h1>
-        <RecommenNewsList />
-      </div>
+          </Col>
+          <Col sm={4}>
+            <div className="content-right">
+              <LatestNewsList />
+              <RecommenNewsList />
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

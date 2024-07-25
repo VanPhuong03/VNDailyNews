@@ -2,6 +2,7 @@
 import React from "react";
 
 const SimilarNews = ({ newsSimilarList }) => {
+  // props lấy dữ liệu được truyền từ component newsdetailpage
   return (
     <div className="similar-articles container ">
       <h2>Bài viết tương tự</h2>

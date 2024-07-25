@@ -10,9 +10,9 @@ function Header() {
         <div className="header">
           <div className="header-top container">
             <div className="logo-time">
-              <a className="logo" href=".">
+              <Link to="/" className="logo">
                 <img src={images.logo} alt="VNDailyNews"></img>
-              </a>
+              </Link>
               <div className="time">
                 <span> <CurrentTime/></span>
               </div>

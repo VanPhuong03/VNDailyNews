@@ -1,6 +1,7 @@
 import React from "react";
 
 const ArticleDetail = ({ inforNews, tags }) => {
+  //dùng props để lấy dữ liệu được truyền từ trang newsdetailpage
   const renderContent = (content, index) => {
     if (content.type === "text default") {
       // Hiển thị văn bản
@@ -23,14 +24,14 @@ const ArticleDetail = ({ inforNews, tags }) => {
 
   return (
     <div className="article-detail container">
-      <div className="tags">
+      <h1 className="tags">
         {tags &&
           tags.map((tag) => (
             <span key={tag.id} className="tag">
               {tag.ten}
             </span>
           ))}
-      </div>
+      </h1>
 
       <h1>{inforNews.tieude}</h1>
       <p>{inforNews.noidungtomtat}</p>
