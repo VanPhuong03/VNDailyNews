@@ -12,7 +12,7 @@
     --secondary-hover-color: #4f4f4f;
     --height-header: 80px;
     --text-color: #4f4f4f;
-    --black-color: #0000;
+    --black-color:#252525;
     --white-color: #fff;
     --text-secondary-color: #ccc;
   }
@@ -33,9 +33,7 @@
     list-style: none;
   }
   
-  .container {
-    width: 100%;
-    max-width: 1100px;
+  .container{
     padding: 0;
   }
   .header{

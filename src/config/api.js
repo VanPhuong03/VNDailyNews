@@ -1,10 +1,10 @@
-
-const API_BASE_URL = 'http://localhost:5000/api/v1';
+// src/services/api.js
 
 const API_ENDPOINTS = {
-  DABOARD_NEWS: `${API_BASE_URL}/dashboard-news`,
-  NEWS: `${API_BASE_URL}/news`,
-  CATEGORYS: `${API_BASE_URL}/categorys`,
-};
-
-export default API_ENDPOINTS;
+    DABOARD_NEWS: process.env.REACT_APP_DASHBOARD_NEWS_URL,
+    NEWS: process.env.REACT_APP_NEWS_URL,
+    CATEGORYS: process.env.REACT_APP_CATEGORYS_URL,
+  };
+  
+  export default API_ENDPOINTS;
+  

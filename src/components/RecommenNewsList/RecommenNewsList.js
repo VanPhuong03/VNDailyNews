@@ -4,6 +4,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import API_ENDPOINTS from "../../config/api";
+import "./index.scss"
+// import API_ENDPOINTS from "../../config/api";
 function RecommenNewsList() {
   const [newslist, setNews] = useState([]);
   useEffect(() => {
@@ -18,11 +20,12 @@ function RecommenNewsList() {
   }, []);
   return (
     <div className="latest_news-list">
-      <h3>Tin tức đề xuất</h3>
-      {newslist.map((news) => (
-        <div key={news.id} className="news-item">
-          <Row className="p-1">
-            <Col lg={4} className="pl-0 w-100 h-10">
+    <a href="/" className="title-latest-news">Tin tức đề xuất</a>
+    {newslist.map((news) => (
+      <div key={news.id} className="news-item">
+        <Row className="p-1">
+          <Col xl={5} lg={6} md={8} className="w-100 h-10">
+            <div className="image">
               <Link to={`/newsdetail/${news.id}`}>
                 <img
                   src={news.anhdaidien}
@@ -30,17 +33,18 @@ function RecommenNewsList() {
                   className="news-image"
                 />
               </Link>
-            </Col>
-            <Col lg={8} className="p-0">
-              <Link to={`/newsdetail/${news.id}`}>
-                <h6>{news.tieude}</h6>
-              </Link>
-              {/* <p>{news.noidungtomtat}</p> */}
-            </Col>
-          </Row>
-        </div>
-      ))}
-    </div>
+            </div>
+          </Col>
+          <Col xl={7} lg={6} className="">
+            <Link to={`/newsdetail/${news.id}`} className="title">
+              <p>{news.tieude}</p>
+            </Link>
+            {/* <p>{news.noidungtomtat}</p> */}
+          </Col>
+        </Row>
+      </div>
+    ))}
+  </div>
   );
 }
 
