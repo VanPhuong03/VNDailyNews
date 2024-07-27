@@ -11,7 +11,7 @@
           color: var(--black-color);
           transition: all ease 0.3s;
           font-size: 25px;
-          font-weight: 600;
+          font-weight: 500;
           display: -webkit-box;
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
@@ -71,15 +71,15 @@
           gap: 10px; // Khoảng cách giữa các mục
 
           & > div:nth-child(1) {
-            min-height: 110px;
+            height: 130px;
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 2fr 2fr;
             gap: 10px;
             grid-column: span 3; // Mục đầu tiên chiếm toàn bộ chiều rộng của hai cột
             
             .img {
-              width: 165px;
-              height: 100px;
+              // width: 165px;
+              height: 130px;
               img {
                 width: 100%;
                 height: 100%;
@@ -88,10 +88,12 @@
             }
             .title {
               .main-title {
-                font-size: 14px;
+                font-size: 16px;
+                font-weight: 500;
               }
               .summary-content {
-                font-size: 10px;
+                font-size: 12px;
+                font-weight: 400;
               }
             }
           }
@@ -101,7 +103,7 @@
           & > div:nth-child(4) {
             grid-row: 2; // Đặt các mục còn lại vào hàng thứ hai
             .img {
-              height: 100px;
+              height: 120px;
               img {
                 width: 100%;
                 height: 100%;
@@ -111,6 +113,7 @@
             .title {
               .main-title {
                 font-size: 12px;
+                font-weight: 500;
               }
             }
           }

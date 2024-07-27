@@ -22,12 +22,16 @@ function LatestNewsList() {
   }, []);
   return (
     <div className="latest_news-list">
-      <a href="/" className="title-latest-news">Tin tức mới nhất</a>
+      <div className="title-latest-news">
+        <a href="/">
+          Tin tức mới nhất
+        </a>
+      </div>
       {newslist.map((news) => (
         <div key={news.id} className="news-item">
           <Row className="">
-            <Col xl={5} lg={6} md={8} className="w-100 h-10">
-              <div className="image">
+            <Col xl={5} lg={6} md={8} className="">
+              <div className="image ">
                 <Link to={`/newsdetail/${news.id}`}>
                   <img
                     src={news.anhdaidien}

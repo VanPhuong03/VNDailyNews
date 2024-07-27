@@ -23,7 +23,7 @@ function RecommenNewsList() {
     <a href="/" className="title-latest-news">Tin tức đề xuất</a>
     {newslist.map((news) => (
       <div key={news.id} className="news-item">
-        <Row className="p-1">
+        <Row className="">
           <Col xl={5} lg={6} md={8} className="w-100 h-10">
             <div className="image">
               <Link to={`/newsdetail/${news.id}`}>

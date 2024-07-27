@@ -17,7 +17,7 @@ function CategoryMenu() {
         console.error("Có lỗi xảy ra khi gọi API:", error); // In lỗi ra console
       });
   }, []);
-  //   console.log(category);
+    console.log(category);
   return (
     <div className="menu">
       {category.slice(0, 10).map((category) => (

@@ -36,6 +36,11 @@
   .container{
     padding: 0;
   }
+  @media (min-width: 1200px) {
+    .container{
+      max-width: 1200px;
+    }
+  }
   .header{
     position: fixed;
     top:0;
@@ -44,15 +49,22 @@
     z-index: 99999;
   }
   .content {
-    position: relative;
-    z-index: 1;
-    top:110px;
+    margin-top: 110px;
+  }
+  .page-container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
   }
   
-  .footer{
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 99;
+  .content-wrap {
+    flex: 1;
   }
+  
+  footer {
+    background-color: #f8f9fa; // Màu nền của footer
+    padding: 20px;
+    text-align: center;
+  }
+  
+  
