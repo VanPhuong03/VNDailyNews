@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import API_ENDPOINTS from "../../config/api";
+// import axios from "axios";
+import { fetchCategory } from "../../services/newsService";
+// import API_ENDPOINTS from "../../config/api";
 import "./CategoryMenu.scss";
 
 function CategoryMenu() {
   const [category, setCategories] = useState([]);
   useEffect(() => {
     // Gọi API để lấy danh mục
-    axios
-      .get(`${API_ENDPOINTS.CATEGORYS}`)
-      .then((response) => {
-        setCategories(response.data.data);
-      })
-      .catch((error) => {
-        console.error("Có lỗi xảy ra khi gọi API:", error); // In lỗi ra console
-      });
+    const  getCategories = async () =>{
+      try{
+        const data = await fetchCategory();
+        setCategories(data);
+      }
+      catch(error){
+        console.error("Có lỗi xảy ra khi gọi API:",error);
+      }
+    }
+    getCategories()
   }, []);
-    console.log(category);
   return (
     <div className="menu">
       {category.slice(0, 10).map((category) => (

@@ -25,11 +25,6 @@ function CategoryPage() {
         console.error("Có lỗi xảy ra khi gọi API:", error); // In lỗi ra console
       });
   }, [id]);
-  console.log(category);
-  console.log(newsNewList);
-  console.log(newsMostViewedList);
-  console.log(newsByTagListOfCategory);
-
   return (
     <div className="category-page content container">
       <ul className="d-flex  align-items-center ">

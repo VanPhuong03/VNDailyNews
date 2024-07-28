@@ -52,15 +52,11 @@
           .title-category {
             .category {
               font-size: 20px;
-              color: var(--text-color);
+              color: var(--primary-color);
               font-weight: bold;
               text-transform: uppercase;
               padding: 0 0 5px;
-              border-bottom: 3px solid var(--text-color);
-              &:hover {
-                color: var(--primary-color);
-                border-bottom: 3px solid var(--primary-color);
-              }
+              border-bottom: 3px solid var(--primary-color);
             }
           }
         }
