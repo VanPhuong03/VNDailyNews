@@ -3,10 +3,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { fetchDashboardNews } from "../../services/newsService";
-import RecommenNewsList from "../../components/RecommenNewsList/RecommenNewsList";
-import LatestNewsList from "../../components/LatestNewsList/LatestNewsList";
+import RecommenNewsList from "@components/RecommenNewsList/RecommenNewsList";
+import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import "./Home.scss";
-
 function Home() {
   const [homedata, setNewsData] = useState([]);
   const [page, setPage] = useState(1);
@@ -128,7 +127,7 @@ function Home() {
             <Col lg={12} md={6} className="mb-3">
               <LatestNewsList />
             </Col>
-            <Col lg={12} md={6}>
+            <Col lg={12} md={6} className="recommen">
               <RecommenNewsList setTopViewedNews={setTopViewedNews} />
             </Col>
           </Row>

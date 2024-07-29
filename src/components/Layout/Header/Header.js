@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
-import images from "../../assets/imgs";
+import images from "@assets/imgs";
 import "./Header.scss";
-import CurrentTime from "../CurrentTime";
+import CurrentTime from "../../CurrentTime";
 import CategoryMenu from "../CategoryMenu/CategoryMenu";
-import WeatherComponent from "../Weather";
+import Weather from "../../Weather/Weather";
 // import { useEffect, useState } from "react";
 function Header() {
   return (
@@ -23,7 +23,7 @@ function Header() {
               <CurrentTime />
             </span>
           </div>
-          <WeatherComponent/>
+          <Weather/>
         </div>
         <form className="form-inline my-2 my-lg-0">
           <input
@@ -53,7 +53,7 @@ function Header() {
       <div className="header-bottom d-flex justify-content-between">
         <nav className="navbar navbar-expand-lg container ">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto p-0">
+            <ul className="navbar-nav mr-auto ">
               <div className="icon-actions">
                 <li>
                   <a href=".">

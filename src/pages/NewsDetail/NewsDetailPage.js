@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import API_ENDPOINTS from "../../config/api";
+import API_ENDPOINTS from "@config/api";
 import axios from "axios";
-import ArticleDetail from "../../components/ArticleDetail/ArticleDeatil";
-import SimilarNews from "../../components/SimilarNews/SimilarNews";
+import ArticleDetail from "@components/NewsDetailPage/ArticleDetail/ArticleDeatil";
+import SimilarNews from "@components/NewsDetailPage/SimilarNews/SimilarNews";
 
 const NewsDetailPage = () => {
   const { id } = useParams(); // lấy ID từ url khi người dùng ấn vào bài viết

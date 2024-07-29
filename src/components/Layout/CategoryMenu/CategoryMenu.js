@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import axios from "axios";
-import { fetchCategory } from "../../services/newsService";
+import { fetchCategory } from "../../../services/newsService";
 // import API_ENDPOINTS from "../../config/api";
 import "./CategoryMenu.scss";
 

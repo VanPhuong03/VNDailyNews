@@ -79,7 +79,7 @@
         .icon-actions {
           height: 100%;
           position: relative;
-          width: 87px;
+          width: 90px;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -91,7 +91,7 @@
           }
   
           .icon-home {
-            padding: 0 7px;
+            padding: 5px 7px;
   
             &:hover {
               background-color: var(--primary-hover-color);

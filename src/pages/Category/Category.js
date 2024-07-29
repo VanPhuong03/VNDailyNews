@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // thư viện thực hiện các yêu cầu từ HTTP
-import API_ENDPOINTS from "../../config/api";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import API_ENDPOINTS from "@config/api";
 import { useParams } from "react-router-dom"; // lấy tham số từ url người dùng chọn
-import NewsByTag from "../../components/NewsByTags/NewByTag";
+import NewsByTag from "@components/CategoryPage/NewsByTags/NewByTag";
+import NewsNewList from "@components/CategoryPage/NewsNewList/NewsNewList";
+import RecommenNewsList from "@components/RecommenNewsList/RecommenNewsList";
+import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
+import NewsMostViewedList from "@components/CategoryPage/NewsMostViewedList/NewsMostViewedList";
+import "./index.scss";
+import images from "@assets/imgs";
 // import API_ENDPOINTS from "../../config/aip";
 
 function CategoryPage() {
@@ -27,45 +35,41 @@ function CategoryPage() {
   }, [id]);
   return (
     <div className="category-page content container">
-      <ul className="d-flex  align-items-center ">
-        <h1 className="pr-1"> {category.ten}</h1>
-        {newsByTagListOfCategory.map((newslist) => (
-          <li key={newslist.id} className="p-2">
-            <a href={`/tags/${newslist.id}`}>{newslist.ten}</a>
+      <div className="header-category">
+        <ul className=" d-flex  align-items-center mb-0 ">
+          <li className="icon-home d-flex align-items-center">
+            <a href="/" className="icon d-flex align-items-center">
+              <img src={images.home} alt="home"></img>
+              <span></span>
+            </a>
+            <div className="title-category">
+              <a href=".">{category.ten}</a>
+            </div>
           </li>
-        ))}
-      </ul>
-      <h1>danh sách tin tức mới nhất theo danh mục</h1>
-      <div className="newsNewList">
-        {newsNewList.map((newslist) => (
-          <div key={newslist.id}>
-            <a href={`/newsdetail/${newslist.id}`}>
-              <img src={newslist.anhdaidien} alt={newslist.tieude}></img>
-            </a>
-            <a href={`/newsdetail/${newslist.id}`}>
-              <h3>{newslist.tieude}</h3>
-            </a>
-
-            <p>{newslist.noidungtomtat}</p>
-          </div>
-        ))}
+          {newsByTagListOfCategory.map((newslist) => (
+            <li key={newslist.id} className="tags">
+              <a href={`/tags/${newslist.id}`}>{newslist.ten}</a>
+            </li>
+          ))}
+        </ul>
       </div>
-      <h1>danh sách tin tức có view cao nhất theo danh mục</h1>
-      <div className="newsMostViewedList">
-        {newsMostViewedList.map((newslist) => (
-          <div key={newslist.id}>
-            <a href={`/newsdetail/${newslist.id}`}>
-              <img src={newslist.anhdaidien} alt={newslist.tieude}></img>
-            </a>
-            <h3>{newslist.tieude}</h3>
-            <p>{newslist.noidungtomtat}</p>
-          </div>
-        ))}
-      </div>
-      <h1> danh sách tin tức theo thể loại của danh mục</h1>
-      <div className="newsByTagListOfCategory">
-        <NewsByTag newsByTagListOfCategory={newsByTagListOfCategory} />
-      </div>
+      <NewsNewList newsNewList={newsNewList} />
+      <Row className="mt-5">
+        <Col lg={9} md={12}>
+          <NewsMostViewedList newsMostViewedList={newsMostViewedList} />
+          <NewsByTag newsByTagListOfCategory={newsByTagListOfCategory} />
+        </Col>
+        <Col lg={3} md={12} className="content-right">
+          <Row>
+            <Col lg={12} md={6} className="mb-3">
+              <LatestNewsList />
+            </Col>
+            <Col lg={12} md={6}>
+              <RecommenNewsList />
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     </div>
   );
 }

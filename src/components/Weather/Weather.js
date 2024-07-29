@@ -23,9 +23,10 @@ const WeatherComponent = () => {
         console.error("Có lỗi xảy ra khi gọi API:", error);
       });
   }, []);
+  console.log(weather);
 
   if (!weather) {
-    return <div>Loading...</div>;
+    return <div className="loading mt-2 ml-2">Loading...</div>;
   }
 
   return (

@@ -1,5 +1,5 @@
 import axios from "axios";
-import API_ENDPOINTS from "../config/api";
+import API_ENDPOINTS from "@config/api";
 
 export const fetchDashboardNews = async (page, limit=10) => {
   try {

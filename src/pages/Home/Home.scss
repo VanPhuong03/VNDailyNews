@@ -38,7 +38,7 @@
       padding: 0 15px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px; 
+      gap: 10px;
       @media (max-width: 1060px) {
         grid-template-columns: 1fr;
       }
@@ -55,7 +55,7 @@
               color: var(--primary-color);
               font-weight: bold;
               text-transform: uppercase;
-              padding: 0 0 5px;
+              padding: 0 0 3px;
               border-bottom: 3px solid var(--primary-color);
             }
           }
@@ -72,7 +72,7 @@
             grid-template-columns: 2fr 2fr;
             gap: 10px;
             grid-column: span 3; // Mục đầu tiên chiếm toàn bộ chiều rộng của hai cột
-            
+
             .img {
               // width: 165px;
               height: 130px;
@@ -93,7 +93,7 @@
               }
             }
           }
-          
+
           & > div:nth-child(2),
           & > div:nth-child(3),
           & > div:nth-child(4) {
@@ -118,8 +118,6 @@
     }
   }
 }
-
-
 
 .main-title,
 .summary-content {

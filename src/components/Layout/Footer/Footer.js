@@ -1,4 +1,4 @@
-import logo from "../../../src/assets/imgs/index";
+import logo from "@assets/imgs/index";
 import "./index.scss";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
