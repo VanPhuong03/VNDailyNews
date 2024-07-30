@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import API_ENDPOINTS from "@config/api";
 import axios from "axios";
 import ArticleDetail from "@components/NewsDetailPage/ArticleDetail/ArticleDeatil";
 import SimilarNews from "@components/NewsDetailPage/SimilarNews/SimilarNews";
-
+import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
+import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
 const NewsDetailPage = () => {
   const { id } = useParams(); // lấy ID từ url khi người dùng ấn vào bài viết
   const [article, setArticle] = useState(null);
@@ -44,8 +47,16 @@ const NewsDetailPage = () => {
 
   return (
     <div className="news-detail-page container content">
-      <ArticleDetail inforNews={inforNews} tags={tags} />
-      <SimilarNews newsSimilarList={newsSimilarList} />
+      <Row>
+        <Col lg={9}>
+          <ArticleDetail inforNews={inforNews} tags={tags} />
+          <SimilarNews newsSimilarList={newsSimilarList} />
+        </Col>
+        <Col lg={3}>
+          <LatestNewsList/>
+          <RecommenNewsList/>
+        </Col>
+      </Row>
     </div>
   );
 };

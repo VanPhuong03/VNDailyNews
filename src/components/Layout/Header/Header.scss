@@ -91,7 +91,9 @@
           }
   
           .icon-home {
-            padding: 5px 7px;
+            a{
+              padding: 8px 7px;
+            }
   
             &:hover {
               background-color: var(--primary-hover-color);

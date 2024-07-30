@@ -6,7 +6,7 @@ import API_ENDPOINTS from "@config/api";
 import { useParams } from "react-router-dom"; // lấy tham số từ url người dùng chọn
 import NewsByTag from "@components/CategoryPage/NewsByTags/NewByTag";
 import NewsNewList from "@components/CategoryPage/NewsNewList/NewsNewList";
-import RecommenNewsList from "@components/RecommenNewsList/RecommenNewsList";
+import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import NewsMostViewedList from "@components/CategoryPage/NewsMostViewedList/NewsMostViewedList";
 import "./index.scss";
@@ -43,7 +43,7 @@ function CategoryPage() {
               <span></span>
             </a>
             <div className="title-category">
-              <a href=".">{category.ten}</a>
+              <a href={category.id}>{category.ten}</a>
             </div>
           </li>
           {newsByTagListOfCategory.map((newslist) => (

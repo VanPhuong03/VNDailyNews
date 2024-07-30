@@ -1,0 +1,46 @@
+.article-detail {
+  .nav {
+    margin-bottom: 15px;
+    ul {
+      li {
+        a {
+          font-size: 14px;
+        }
+        .home {
+          color: #959595;
+          &::after {
+            content: "|";
+            padding: 0 7px;
+          }
+        }
+        .tag {
+          color: var(--primary-color);
+        }
+      }
+    }
+    .time {
+      font-size: 14px;
+      color: #959595;
+    }
+  }
+  .title {
+    font-size: 27px;
+    line-height: 1.3;
+    font-weight: bold;
+    color: #252525;
+  }
+  .summary-content {
+    font-size: 15px;
+    line-height: 24px;
+    color: #252525;
+  }
+  .content-details{
+    p , span{
+        margin: 0 !important;
+    }
+    img{
+        width: 100%;
+        margin: 15px 0;
+    }
+  }
+}

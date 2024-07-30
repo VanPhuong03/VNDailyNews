@@ -34,8 +34,8 @@ const NewsSlider = ({ newsMostViewedList }) => {
           fill="none"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M9.53711 1.6793L8.10449 -7.62939e-06L5.72205e-05 9.5L8.10449 19L9.53711 17.3207L2.86529 9.5L9.53711 1.6793Z"
             fill="#272727"
           />
@@ -51,9 +51,9 @@ const NewsSlider = ({ newsMostViewedList }) => {
               <img src={newslist.anhdaidien} alt={newslist.tieude} />
             </a>
             <div className="title">
-            <a href={`/newsdetail/${newslist.id}`} className="main-title">
-              {newslist.tieude}
-            </a>
+              <a href={`/newsdetail/${newslist.id}`} className="main-title">
+                {newslist.tieude}
+              </a>
             </div>
           </div>
         ))}
@@ -67,8 +67,8 @@ const NewsSlider = ({ newsMostViewedList }) => {
           fill="none"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M8.13578e-07 17.3207L1.43262 19L9.53705 9.5L1.43262 0L0 1.67931L6.67182 9.5L8.13578e-07 17.3207Z"
             fill="#272727"
           />
