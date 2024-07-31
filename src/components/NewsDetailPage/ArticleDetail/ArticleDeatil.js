@@ -1,6 +1,9 @@
 import React from "react";
 import "./Article.scss";
 import CurrentTime from "../../CurrentTime";
+import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import PhotoSwipe from "../PhotoSwipe";
 // import Zoom from 'react-medium-image-zoom';
 const ArticleDetail = ({ inforNews, tags }) => {
   // Dùng switch để xử lý các loại nội dung khác nhau
@@ -35,14 +38,16 @@ const ArticleDetail = ({ inforNews, tags }) => {
           </h2>
         );
       case "image":
-        return <img key={index} src={content.src} alt={content.name} />;
-      case "richtext":
         return (
-          <div 
+          <PhotoSwipe
             key={index}
-            dangerouslySetInnerHTML={{ __html: content.value }}
+            images={[
+              { src: content.src, width: 800, height: 600, alt: content.name },
+            ]}
           />
         );
+      case "richtext":
+        return <FroalaEditorView key={index} model={content.value} />;
       default:
         return null;
     }
@@ -79,7 +84,9 @@ const ArticleDetail = ({ inforNews, tags }) => {
       </div>
 
       <p className="title">{inforNews.tieude}</p>
-      <p className="summary-content"><strong>{inforNews.noidungtomtat}</strong></p>
+      <p className="summary-content">
+        <strong>{inforNews.noidungtomtat}</strong>
+      </p>
       {/* <img src={inforNews.anhdaidien} alt={inforNews.tieude} /> */}
       <div className="content-details">
         {contentDetails.map((content, index) => renderContent(content, index))}

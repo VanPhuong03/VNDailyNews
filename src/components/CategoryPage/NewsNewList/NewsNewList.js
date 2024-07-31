@@ -1,6 +1,9 @@
 import React from "react";
 import "./NewsNewList.scss"
 function Test({ newsNewList }) {
+  if (newsNewList.length === 0) {
+    return <div>chưa có bài viết</div>; // Không render component nếu không có bài viết
+  }
   return (
       <div className="newsNewList">
         {newsNewList.map((newslist, index) => (
