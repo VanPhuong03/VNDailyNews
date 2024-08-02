@@ -8,7 +8,7 @@ import images from "@assets/imgs";
 import "./Header.scss";
 import CurrentTime from "../../CurrentTime";
 import CategoryMenu from "../CategoryMenu/CategoryMenu";
-import Weather from "../../Weather/Weather";
+// import Weather from "../../Weather/Weather";
 // import { useEffect, useState } from "react";
 function Header() {
   return (
@@ -23,7 +23,7 @@ function Header() {
               <CurrentTime />
             </span>
           </div>
-          <Weather/>
+          {/* <Weather/> */}
         </div>
         <form className="form-inline my-2 my-lg-0">
           <input

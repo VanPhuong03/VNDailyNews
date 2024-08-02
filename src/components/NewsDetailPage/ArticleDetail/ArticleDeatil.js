@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Article.scss";
 import CurrentTime from "../../CurrentTime";
-import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 import "froala-editor/css/froala_editor.pkgd.min.css";
-import PhotoSwipe from "../PhotoSwipe";
-// import Zoom from 'react-medium-image-zoom';
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import "photoswipe/style.css";
+import PhotoSwipeComponent from "../PhotoSwipe"; // Đảm bảo đường dẫn chính xác
+
 const ArticleDetail = ({ inforNews, tags }) => {
-  // Dùng switch để xử lý các loại nội dung khác nhau
   const renderContent = (content, index) => {
     switch (content.type) {
       case "text default":
@@ -39,24 +39,57 @@ const ArticleDetail = ({ inforNews, tags }) => {
         );
       case "image":
         return (
-          <PhotoSwipe
-            key={index}
-            images={[
-              { src: content.src, width: 800, height: 600, alt: content.name },
-            ]}
-          />
+          <div className="images" key={index}>
+            <PhotoSwipeComponent
+              images={[
+                {
+                  src: content.src,
+                  alt: content.name,
+                },
+              ]}
+            />
+            {content.name && <p className="image-name">{content.name}</p>}
+          </div>
         );
       case "richtext":
-        return <FroalaEditorView key={index} model={content.value} />;
+        return (
+          <div
+            key={index}
+            className="richtext-content"
+            dangerouslySetInnerHTML={{ __html: content.value }}
+          />
+        );
       default:
         return null;
     }
   };
 
-  console.log(inforNews);
-
-  // Chuyển đổi dữ liệu JSON và hiển thị nội dung
   const contentDetails = JSON.parse(inforNews.noidungchitiet);
+
+  useEffect(() => {
+    const images = document.querySelectorAll(".richtext-content img");
+    images.forEach((img) => {
+      const link = document.createElement("a");
+      link.href = img.src;
+      link.setAttribute("data-pswp-width", img.naturalWidth);
+      link.setAttribute("data-pswp-height", img.naturalHeight);
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
+      img.parentNode.insertBefore(link, img);
+      link.appendChild(img);
+    });
+
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: "#photo-swipe-gallery",
+      children: "a",
+      pswpModule: () => import("photoswipe"),
+      padding: { top: 20, bottom: 20, left: 20, right: 20 },
+      wheelToZoom: true,
+    });
+    lightbox.init();
+
+    return () => lightbox.destroy();
+  }, [inforNews]);
 
   return (
     <div className="article-detail container">
@@ -87,8 +120,7 @@ const ArticleDetail = ({ inforNews, tags }) => {
       <p className="summary-content">
         <strong>{inforNews.noidungtomtat}</strong>
       </p>
-      {/* <img src={inforNews.anhdaidien} alt={inforNews.tieude} /> */}
-      <div className="content-details">
+      <div id="photo-swipe-gallery" className="content-details fr-view">
         {contentDetails.map((content, index) => renderContent(content, index))}
       </div>
     </div>

@@ -8,6 +8,7 @@ import ArticleDetail from "@components/NewsDetailPage/ArticleDetail/ArticleDeati
 import SimilarNews from "@components/NewsDetailPage/SimilarNews/SimilarNews";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
+import ShareButton from "@components/NewsDetailPage/ShareButton";
 const NewsDetailPage = () => {
   const { id } = useParams(); // lấy ID từ url khi người dùng ấn vào bài viết
   const [article, setArticle] = useState(null);
@@ -44,17 +45,21 @@ const NewsDetailPage = () => {
 
   if (!article) return <div>Loading...</div>;
   const { inforNews, tags, newsSimilarList } = article;
+  const articleUrl = `${window.location.origin}/news/${id}`;
 
   return (
     <div className="news-detail-page container content">
       <Row>
         <Col lg={9}>
           <ArticleDetail inforNews={inforNews} tags={tags} />
+          <div className="share-news">
+            <ShareButton url={articleUrl} title={inforNews.title} />
+          </div>
           <SimilarNews newsSimilarList={newsSimilarList} />
         </Col>
         <Col lg={3}>
-          <LatestNewsList/>
-          <RecommenNewsList/>
+          <LatestNewsList />
+          <RecommenNewsList />
         </Col>
       </Row>
     </div>
