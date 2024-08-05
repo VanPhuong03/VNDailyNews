@@ -7,6 +7,7 @@ module.exports = function override(config) {
     "@config": "src/config",
     "@utils": "src/utils",
     "@pages": "src/pages",
+    "@services": "src/services",
     // thêm các alias khác nếu cần
   })(config);
 

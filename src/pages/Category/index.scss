@@ -2,9 +2,84 @@
   .header-category {
     background: #ebebeb;
     padding: 10px 20px;
+    position: relative;
     ul {
-      width: 90%;
+      width: 100%;
       justify-content: initial;
+      .tags-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        white-space: nowrap;
+        .tags {
+          display: flex;
+          justify-content: space-between;
+          a {
+            font-size: 16px;
+            color: #252525;
+            transition: all ease 0.3s;
+            padding: 0 10px;
+            text-transform: capitalize;
+            &:hover {
+              color: var(--primary-color);
+            }
+          }
+        }
+        .more-tags {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: #ebebeb;
+          cursor: pointer;
+          font-size: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9;
+        }
+
+        .hidden-tags {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .hidden-tags a {
+          width: calc(
+            20% - 10px
+          ); // 20% cho mỗi cột, trừ khoảng cách giữa các tags
+          margin: 5px; // Khoảng cách giữa các tags
+          display: block;
+          padding: 5px;
+          background-color: #f0f0f0;
+          border-radius: 4px;
+          text-align: center;
+        }
+
+        .hidden-tags {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background: #fff;
+          border: 1px solid #ccc;
+          z-index: 1;
+          display: none;
+          &.show {
+            display: flex;
+          }
+
+          a {
+            padding: 10px;
+            font-size: 16px;
+            color: #252525;
+            transition: all ease 0.3s;
+            &:hover {
+              color: var(--primary-color);
+            }
+          }
+        }
+      }
       .icon-home {
         margin-right: 20px;
         .icon {
@@ -22,17 +97,6 @@
           font-weight: bold;
           a {
             color: #252525;
-          }
-        }
-      }
-      .tags {
-        a {
-          font-size: 16px;
-          color: #252525;
-          transition: all ease 0.3s;
-          padding: 0 20px;
-          &:hover {
-            color: var(--primary-color);
           }
         }
       }
@@ -56,4 +120,3 @@
     color: var(--primary-color);
   }
 }
-

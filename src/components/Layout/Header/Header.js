@@ -1,16 +1,23 @@
-// import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-// import axios from "axios";
-// import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
+// Header.js
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSearch } from "../../SearchContext";
 import images from "@assets/imgs";
 import "./Header.scss";
 import CurrentTime from "../../CurrentTime";
 import CategoryMenu from "../CategoryMenu/CategoryMenu";
 // import Weather from "../../Weather/Weather";
-// import { useEffect, useState } from "react";
 function Header() {
+  const { searchTerm, setSearchTerm } = useSearch();
+  const navigate = useNavigate();
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/search?query=${searchTerm}`);
+    }
+  };
+
   return (
     <div className="header">
       <div className="header-top container">
@@ -25,11 +32,13 @@ function Header() {
           </div>
           {/* <Weather/> */}
         </div>
-        <form className="form-inline my-2 my-lg-0">
+        <form className="form-inline my-2 my-lg-0" onSubmit={handleSearch}>
           <input
             className="form-control"
             placeholder="Tìm kiếm..."
             aria-label="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           ></input>
           <button
             className="btn btn-outline-success my-2 my-sm-0"

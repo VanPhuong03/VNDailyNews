@@ -4,8 +4,8 @@ import './index.scss'
 
 const ShareButton = ({ url }) => {
   const handleShare = () => {
-    // const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-    // window.open(facebookShareUrl, "_blank", "width=600,height=400");
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    window.open(facebookShareUrl, "_blank", "width=600,height=400");
   };
 
   return (

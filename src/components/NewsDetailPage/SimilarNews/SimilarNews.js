@@ -5,9 +5,10 @@ import Col from "react-bootstrap/Col";
 import "./SimilarNews.scss"
 const SimilarNews = ({ newsSimilarList }) => {
   // props lấy dữ liệu được truyền từ component newsdetailpage
+  console.log(newsSimilarList)
   return (
     <div className="similar-articles container ">
-      <h2>Bài viết tương tự</h2>
+      {/* <h2>Bài viết tương tự</h2> */}
       <div>
         {newsSimilarList.map((news) => (
           <Row key={news.id} className="news-item">
@@ -25,15 +26,6 @@ const SimilarNews = ({ newsSimilarList }) => {
           </Row>
         ))}
       </div>
-      {/* {newsSimilarList &&
-        newsSimilarList.map((similar) => (
-          <div key={similar.id} className="similar-article">
-            <img src={similar.anhdaidien} alt={similar.tieude} />
-            <h3>{similar.tieude}</h3>
-            <p>{similar.noidungtomtat}</p>
-            <a href={`/newsdetail/${similar.id}`}>Đọc thêm</a>
-          </div>
-        ))} */}
     </div>
   );
 };

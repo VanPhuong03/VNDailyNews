@@ -104,7 +104,7 @@ const ArticleDetail = ({ inforNews, tags }) => {
             <a href="." className="tags">
               {tags &&
                 tags.map((tag) => (
-                  <span key={tag.id} className="tag">
+                  <span key={tag.id} className="tag pl-2">
                     {tag.ten}
                   </span>
                 ))}
@@ -116,7 +116,7 @@ const ArticleDetail = ({ inforNews, tags }) => {
         </div>
       </div>
 
-      <p className="title">{inforNews.tieude}</p>
+      <p className="title">{inforNews.tiede}</p>
       <p className="summary-content">
         <strong>{inforNews.noidungtomtat}</strong>
       </p>
