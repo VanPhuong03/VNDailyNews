@@ -17,7 +17,25 @@ const NewsSlider = ({ newsMostViewedList }) => {
   };
   // Kiểm tra xem có bài viết nào không
   if (newsMostViewedList.length === 0) {
-    return <div>chưa có bài viết</div>; 
+    return <div>chưa có bài viết</div>;
+  }
+  if (newsMostViewedList.length < 3) {
+    return (
+      <div className="news-list d-flex justify-content-between">
+        {newsMostViewedList.map((newslist) => (
+          <div key={newslist.id} className="news-item">
+            <a href={`/newsdetail/${newslist.id}`}>
+              <img src={newslist.anhdaidien} alt={newslist.tieude} />
+            </a>
+            <div className="title">
+              <a href={`/newsdetail/${newslist.id}`} className="main-title">
+                {newslist.tieude}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   }
   return (
     <div className="news-slider">

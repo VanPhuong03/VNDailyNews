@@ -30,7 +30,7 @@ function CategoryMenu() {
               <ul className="sub-menu">
                 {category.tags.map((tag) => (
                   <li key={tag.id}>
-                    <Link to={`/tags/${tag.id}`} title={tag.ten} href=".">
+                    <Link to={`/tags/${tag.id}`} title={tag.ten} >
                       {tag.ten}
                     </Link>
                   </li>

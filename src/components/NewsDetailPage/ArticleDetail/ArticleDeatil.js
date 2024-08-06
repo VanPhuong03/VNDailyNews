@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Article.scss";
 import CurrentTime from "../../CurrentTime";
 import "froala-editor/css/froala_editor.pkgd.min.css";
@@ -96,19 +97,17 @@ const ArticleDetail = ({ inforNews, tags }) => {
       <div className="d-flex justify-content-between nav">
         <ul className="d-flex">
           <li>
-            <a href="/" className="home">
+            <Link to="/" className="home">
               Trang chủ
-            </a>
+            </Link>
           </li>
-          <li>
-            <a href="." className="tags">
-              {tags &&
-                tags.map((tag) => (
-                  <span key={tag.id} className="tag pl-2">
-                    {tag.ten}
-                  </span>
-                ))}
-            </a>
+          <li className="tags">
+            {tags &&
+              tags.map((tag) => (
+                <Link to={`/tags/${tag.id}`} key={tag.id} className="tag pl-2">
+                  {tag.ten}
+                </Link>
+              ))}
           </li>
         </ul>
         <div className="time">
