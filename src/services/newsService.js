@@ -2,7 +2,7 @@ import axios from "axios";
 import API_ENDPOINTS from "@config/api";
 
 // call api trang chủ
-export const fetchDashboardNews = async (page, limit = 10) => {
+export const fetchDashboardNews = async (page = 1, limit = 10) => {
   try {
     const response = await axios.get(
       `${API_ENDPOINTS.DABOARD_NEWS}?page=${page}&limit=${limit}`
@@ -36,12 +36,12 @@ export const fetchCategoryPage = async (id, page = 1, limit = 5) => {
   }
 };
 // api lấy thêm các thẻ
-export const loadMoreTags = async (id, page) => {
-  const response = await axios.get(
-    `${API_ENDPOINTS.CATEGORYS}/${id}/?page=${page}`
-  );
-  return response.data.data;
-};
+// export const loadMoreTags = async (id, page) => {
+//   const response = await axios.get(
+//     `${API_ENDPOINTS.CATEGORYS}/${id}/?page=${page}`
+//   );
+//   return response.data.data;
+// };
 
 // call api trang chi tiết bài đăng
 export const fetchArticleById = async (id) => {

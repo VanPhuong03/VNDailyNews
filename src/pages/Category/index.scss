@@ -102,21 +102,21 @@
       }
     }
   }
-}
-
-.main-title,
-.summary-content {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.main-title {
-  color: var(--black-color);
-  transition: all ease 0.3s;
-  font-weight: 600;
-  &:hover {
-    color: var(--primary-color);
+  
+  .main-title,
+  .summary-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .main-title {
+    color: var(--black-color);
+    transition: all ease 0.3s;
+    font-weight: 600;
+    &:hover {
+      color: var(--primary-color);
+    }
   }
 }

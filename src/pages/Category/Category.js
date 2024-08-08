@@ -9,7 +9,7 @@ import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import NewsMostViewedList from "@components/CategoryPage/NewsMostViewedList/NewsMostViewedList";
 import "./index.scss";
 import images from "@assets/imgs";
-import { fetchCategoryPage, loadMoreTags } from "../../services/newsService";
+import { fetchCategoryPage} from "../../services/newsService";
 
 function CategoryPage() {
   const { id } = useParams();
@@ -48,7 +48,7 @@ function CategoryPage() {
       if (!loadingTags || !hasMoreTags) return;
       setLoading(true);
       try {
-        const data = await loadMoreTags(id, page);
+        const data = await fetchCategoryPage(id, page);
         setNewsByTagListOfCategory((prevList) => [
           ...prevList,
           ...data.newsByTagListOfCategory,

@@ -23,9 +23,7 @@ function LatestNewsList() {
   return (
     <div className="latest_news-list">
       <div className="title-latest-news">
-        <a href="/">
-          Tin tức mới nhất
-        </a>
+        <a href="/">Tin tức mới nhất</a>
       </div>
       {newslist.map((news) => (
         <div key={news.id} className="news-item">
@@ -41,9 +39,9 @@ function LatestNewsList() {
                 </Link>
               </div>
             </Col>
-            <Col xl={7} lg={6} className="">
-              <Link to={`/newsdetail/${news.id}`} className="title">
-                <p>{news.tieude}</p>
+            <Col xl={7} lg={6} className="title">
+              <Link to={`/newsdetail/${news.id}`} className="main-title">
+                {news.tieude}
               </Link>
               {/* <p>{news.noidungtomtat}</p> */}
             </Col>

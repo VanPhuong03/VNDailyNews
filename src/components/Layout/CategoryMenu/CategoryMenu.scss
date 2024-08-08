@@ -25,29 +25,40 @@
       .sub-menu {
         left: 0;
         min-width: 199px;
-        padding: 0 15px;
         border-top: 3px solid var(--primary-active-color);
         border-radius: 0 0 4px 4px;
         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
-        a {
-          color: var(--text-color);
-          font-size: 13px;
-          padding: 10px 0;
-          display: block;
+        li {
+          padding: 0 15px;
+          a {
+            color: var(--secondary-hover-color);
+            font-size: 13px;
+            padding: 10px 0;
+            display: block;
+            border-bottom: 1px solid #ebebeb;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: var(--primary-color);
+          }
+          &:hover a {
+            color: var(--white-color);
+            border-bottom: 1px solid var(--primary-color);
+          }
         }
       }
     }
     &:hover {
-        background-color: var(--primary-hover-color);
+      background-color: var(--primary-hover-color);
       .tag {
         display: block; /* Hiển thị khi hover */
       }
     }
   }
-  .nav-item:nth-child(n+6) {
+  .nav-item:nth-child(n + 6) {
     .tag {
-      left: auto;   /* Hủy bỏ vị trí left mặc định */
-      right: 0;     /* Đặt vị trí right là 0 */
+      left: auto; /* Hủy bỏ vị trí left mặc định */
+      right: 0; /* Đặt vị trí right là 0 */
     }
   }
 }

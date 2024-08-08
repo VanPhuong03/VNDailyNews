@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -6,20 +8,23 @@ import { fetchDashboardNews } from "../../services/newsService";
 import RecommenNewsList from "@components/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import "./Home.scss";
+
 function Home() {
   const [homedata, setNewsData] = useState([]);
   const [page, setPage] = useState(1);
   const [topViewedNews, setTopViewedNews] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true); // kiểm soát khi nào cần tải dữ liệu
 
   useEffect(() => {
-    const getNewsData = async (page) => {
+    const getNewsData = async () => {
       setLoading(true);
       try {
         const data = await fetchDashboardNews(page);
         if (data.length === 0) {
+          setHasMore(false); // không còn dữ liệu mới
           setLoading(false);
-          return; // Ngừng tải thêm khi không có dữ liệu mới
+          return;
         }
         setNewsData((prevData) => [...prevData, ...data]);
         setLoading(false);
@@ -35,7 +40,8 @@ function Home() {
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 2
+        document.documentElement.offsetHeight - 2 &&
+        hasMore
       ) {
         setPage((prevPage) => prevPage + 1);
       }
@@ -43,7 +49,13 @@ function Home() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [hasMore]);
+
+  useEffect(() => {
+    if (!topViewedNews && homedata.length > 0 && homedata[0].news.length > 0) {
+      setTopViewedNews(homedata[0].news[0]);
+    }
+  }, [homedata, topViewedNews]);
 
   return (
     <Container className="content home-page">
@@ -108,7 +120,7 @@ function Home() {
                               {newsItem.tieude}
                             </a>
                             {index === 0 && (
-                              <p className="summary-content m-0">
+                              <p className="summary-content ">
                                 {newsItem.noidungtomtat}
                               </p>
                             )}

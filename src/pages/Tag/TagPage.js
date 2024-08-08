@@ -1,102 +1,3 @@
-// // TagPages
-
-// import React, { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import { fetchTagData} from "../../services/newsService";
-
-// function TagPage() {
-//   const { id } = useParams();
-//   const [tag, setTag] = useState(null);
-//   const [newsList, setNewsList] = useState([]);
-//   const [category, setCategory] = useState(null);
-//   const [page, setPage] = useState(1);
-//   const [loading, setLoading] = useState(false);
-//   const [loadingTags, setLoadingTags] = useState(false);
-//   const [hasMoreTags, setHasMoreTags] = useState(true); // kiểm soát khi nào cần tải dữ liệu
-
-//   useEffect(() => {
-//     const getTagData = async () => {
-//       try {
-//         const data = await fetchTagData(id);
-//         setTag(data.tag);
-//         setCategory(data.category);
-//         setNewsList(data.newsList);
-//         setHasMoreTags(data.newsList.length > 0);
-//       } catch (error) {
-//         console.error("Error fetching tag data:", error);
-//       }
-//     };
-
-//     getTagData();
-//     window.scrollTo(0, 0);
-//     setPage(1); // đặt lại trang về 1 khi id thay đôi
-//     setHasMoreTags(true); // đặt lại khi id thay đổi
-//   }, [id]);
-
-//   useEffect(() => {
-//     const fetchMoreTags = async () => {
-//       if (!loadingTags || !hasMoreTags) return;
-//       setLoading(true);
-//       try {
-//         const data = await fetchTagData(id, page);
-//         setNewsList((prevList) => [
-//           ...prevList,
-//           ...data.newsList,
-//         ]);
-//         setHasMoreTags(data.newsList.length > 0); // Check if there are more tags to load
-//         setLoading(false);
-//         setLoadingTags(false); // Reset loadingTags after fetching
-//       } catch (error) {
-//         console.error("Có lỗi xảy ra khi gọi API:", error);
-//         setLoading(false);
-//         setLoadingTags(false); // Reset loadingTags even on error
-//       }
-//     };
-
-//     if (page > 1) {
-//       fetchMoreTags();
-//     }
-//   }, [id, page, loadingTags, hasMoreTags]);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       if (
-//         window.innerHeight + document.documentElement.scrollTop >=
-//         document.documentElement.offsetHeight - 2 &&
-//         hasMoreTags
-//       ) {
-//         setLoadingTags(true);
-//         setPage((prevPage) => prevPage + 1);
-//       }
-//     };
-
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, [hasMoreTags]);
-
-//   if (!tag || !category) {
-//     return <div>Loading...</div>;
-//   }
-
-//   return (
-//     <div className="container content">
-//       <h2>{category.ten}</h2>
-//       <h3>{tag.ten}</h3>
-//       <ul>
-//         {newsList.map((news) => (
-//           <li key={news.id}>
-//             <img src={news.anhdaidien} alt={news.tieude} />
-//             <h4>{news.tieude}</h4>
-//             <p>{news.noidungtomtat}</p>
-//           </li>
-//         ))}
-//       </ul>
-//       {loading && <p>Loading...</p>}
-//     </div>
-//   );
-// }
-
-// export default TagPage;
 
 // TagPages
 
@@ -206,9 +107,15 @@ function TagPage() {
             ))}
           </div>
         </Col>
-        <Col lg={3} md={12}>
-          <LatestNewsList />
-          <RecommenNewsList />
+        <Col lg={3} md={12} className="content-right">
+          <Row>
+            <Col lg={12} md={6} className="mb-3">
+              <LatestNewsList />
+            </Col>
+            <Col lg={12} md={6}>
+              <RecommenNewsList />
+            </Col>
+          </Row>
         </Col>
       </Row>
       {loading && <p>Loading...</p>}

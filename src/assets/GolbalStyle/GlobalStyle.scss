@@ -5,13 +5,13 @@
     padding: 0;
   }
   :root {
-    --primary-color: #7dc115;
+    --primary-color: #78b43d;
     --primary-hover-color: #047857;
     --primary-active-color: #047857;
     --secondary-color: #ccc;
     --secondary-hover-color: #4f4f4f;
     --height-header: 80px;
-    --text-color: #4f4f4f;
+    --text-color: #7d7d7d;
     --black-color:#252525;
     --white-color: #fff;
     --text-secondary-color: #ccc;
@@ -39,20 +39,8 @@
   .container{
     padding: 0;
   }
-  @media (min-width: 1200px) {
-    .container{
-      max-width: 1200px;
-    }
-  }
-  .header{
-    position: fixed;
-    top:0;
-    left: 0;
-    right: 0;
-    z-index: 99999;
-  }
   .content {
-    margin-top: 110px;
+    margin-top: 30px;
   }
   .page-container {
     display: flex;
@@ -64,7 +52,7 @@
     flex: 1;
   }
   
-  footer {
+ .footer {
     background-color: #f8f9fa; // Màu nền của footer
     padding: 20px;
     text-align: center;

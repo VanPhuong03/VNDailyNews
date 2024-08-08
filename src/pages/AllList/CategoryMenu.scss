@@ -1,0 +1,132 @@
+// .menu {
+//   display: flex;
+//   width: 90%;
+//   justify-content: space-between;
+//   .nav-item {
+//     position: relative;
+//     display: flex;
+//     align-items: center;
+//     height: 40px;
+//     transition: background-color 0.3s ease;
+//     > a {
+//       color: var(--white-color);
+//       font-size: 12px;
+//       font-weight: 500;
+//       padding: 8px 7px;
+//       text-transform: uppercase;
+//     }
+//     .tag {
+//       position: absolute;
+//       top: 40px;
+//       left: 0;
+//       z-index: 10;
+//       display: none;
+//       background-color: #fff;
+//       .sub-menu {
+//         left: 0;
+//         min-width: 199px;
+//         border-top: 3px solid var(--primary-active-color);
+//         border-radius: 0 0 4px 4px;
+//         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+//         li {
+//           padding: 0 15px;
+//           a {
+//             color: var(--secondary-hover-color);
+//             font-size: 13px;
+//             padding: 10px 0;
+//             display: block;
+//             border-bottom: 1px solid #ebebeb;
+//           }
+//           &:hover {
+//             cursor: pointer;
+//             background-color: var(--primary-color);
+//           }
+//           &:hover a {
+//             color: var(--white-color);
+//             border-bottom: 1px solid var(--primary-color);
+//           }
+//         }
+//       }
+//     }
+//     &:hover {
+//       background-color: var(--primary-hover-color);
+//       .tag {
+//         display: block; /* Hiển thị khi hover */
+//       }
+//     }
+//   }
+//   .nav-item:nth-child(n + 6) {
+//     .tag {
+//       left: auto; /* Hủy bỏ vị trí left mặc định */
+//       right: 0; /* Đặt vị trí right là 0 */
+//     }
+//   }
+// }
+
+.all-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px !important;
+  background-color: #f8f8f8;
+
+  .nav-item {
+    width: 18%;
+    margin-bottom: 20px;
+    list-style: none;
+    >a {
+      color: var(--primary-color);
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+
+    .tag {
+      margin-top: 10px;
+
+      .sub-menu {
+        list-style: none;
+        padding-left: 0;
+        max-height: 212px; /* Giới hạn chiều cao của danh sách */
+        overflow-y: auto; /* Cho phép cuộn dọc nếu danh sách vượt quá chiều cao */
+
+        /* Custom scrollbar */
+        &::-webkit-scrollbar {
+          width: 6px; /* Độ rộng của thanh cuộn */
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #b3b3b3; /* Màu của thanh cuộn */
+          border-radius: 10px; /* Bo tròn góc của thanh cuộn */
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: #828282; /* Màu thanh cuộn khi hover */
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: #f1f1f1; /* Màu nền của thanh cuộn */
+        }
+
+        li {
+          margin-bottom: 8px;
+
+          a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500px !important;
+
+            &:hover {
+              color: #82ae46; /* Màu xanh giống như trong hình */
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

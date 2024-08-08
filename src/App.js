@@ -4,15 +4,18 @@ import Category from "@pages/Category/Category";
 import Search from "@pages/Search/Search";
 import NewsDetailPage from "@pages/NewsDetail/NewsDetailPage";
 import TagPage from "@pages/Tag/TagPage";
-import Header from "@components/Layout/Header/Header";
+import NavBar from "@components/Layout/Header/NavBar";
+import HeaderTop from "@components/Layout/Header/HeaderTop";
 import Footer from "@components/Layout/Footer/Footer";
 import { SearchProvider } from "./components/SearchContext";
+import AllListPage from "./pages/AllList/AllListPage";
 function App() {
   return (
     <div className="page-container">
       <SearchProvider>
         <Router>
-          <Header />
+          <HeaderTop />
+          <NavBar />
           <div className="content-wrap">
             <Routes>
               <Route path="/" element={<Home />} />
@@ -20,6 +23,7 @@ function App() {
               <Route path="/tags/:id" element={<TagPage />} />
               <Route path="/newsdetail/:id" element={<NewsDetailPage />} />
               <Route path="/search" element={<Search />} />
+              <Route path="/alllist" element={<AllListPage/>} />
             </Routes>
           </div>
           <Footer />
