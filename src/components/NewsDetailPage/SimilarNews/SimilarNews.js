@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import "./SimilarNews.scss"
 const SimilarNews = ({ newsSimilarList }) => {
   // props lấy dữ liệu được truyền từ component newsdetailpage
-  console.log(newsSimilarList)
+  // console.log(newsSimilarList)
   return (
     <div className="similar-articles container ">
       {/* <h2>Bài viết tương tự</h2> */}

@@ -73,7 +73,9 @@ export const updateViewCount = async (id) => {
 // call api trang chi tiết thể loại trong danh mục
 export const fetchTagData = async (id, page = 1, limit = 5) => {
   try {
-    const response = await axios.get(`${API_ENDPOINTS.TAGS}/${id}?page=${page}&limit=${limit}`);
+    const response = await axios.get(
+      `${API_ENDPOINTS.TAGS}/${id}?page=${page}&limit=${limit}`
+    );
     return response.data.data;
   } catch (error) {
     console.error("Error fetching tag data:", error);

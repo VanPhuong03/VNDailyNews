@@ -1,14 +1,15 @@
 
-
 import React, { useState, useEffect } from "react";
 import { fetchCategory } from "../../../services/newsService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.scss";
 
 function Header() {
   const [category, setCategories] = useState([]);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    // Gọi API để lấy danh mục
     const getCategories = async () => {
       try {
         const data = await fetchCategory();
@@ -20,29 +21,73 @@ function Header() {
     getCategories();
   }, []);
 
+  const handleMenuToggle = () => {
+    setMenuOpen((prevState) => !prevState); // Đảo trạng thái của menuOpen
+  };
+
+  const handleHomeClick = () => {
+    if (menuOpen) {
+      setMenuOpen(false); // Đóng menu khi nhấn vào Home
+    }
+    navigate("/"); // Điều hướng về trang Home
+  };
+
+  const handleNavItemClick = () => {
+    if (menuOpen) {
+      setMenuOpen(false); // Đóng menu khi nhấn vào một nav-item
+    }
+  };
+
   return (
     <div className="header-bottom d-flex justify-content-between">
       <nav className="navbar navbar-expand-lg container">
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <div className="icon-actions">
-              <li className="click_on_off_menu">
-                <Link to="/alllist">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="19"
-                    viewBox="0 0 22 19"
-                    fill="none"
-                  >
-                    <path
-                      d="M0.78125 3.4898H21.0938C21.5252 3.4898 21.875 3.14261 21.875 2.71429V0.77551C21.875 0.347186 21.5252 0 21.0938 0H0.78125C0.349756 0 0 0.347186 0 0.77551V2.71429C0 3.14261 0.349756 3.4898 0.78125 3.4898ZM0.78125 11.2449H21.0938C21.5252 11.2449 21.875 10.8977 21.875 10.4694V8.53061C21.875 8.10229 21.5252 7.7551 21.0938 7.7551H0.78125C0.349756 7.7551 0 8.10229 0 8.53061V10.4694C0 10.8977 0.349756 11.2449 0.78125 11.2449ZM0.78125 19H21.0938C21.5252 19 21.875 18.6528 21.875 18.2245V16.2857C21.875 15.8574 21.5252 15.5102 21.0938 15.5102H0.78125C0.349756 15.5102 0 15.8574 0 16.2857V18.2245C0 18.6528 0.349756 19 0.78125 19Z"
-                      fill="white"
-                    />
-                  </svg>
+              <li className="click_on_off_menu" onClick={handleMenuToggle}>
+                <Link to="#">
+                  {menuOpen ? (
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 23 23"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="19.0918"
+                        y="22.0919"
+                        width="27"
+                        height="4"
+                        transform="rotate(-135 19.0918 22.0919)"
+                        fill="white"
+                      />
+                      <rect
+                        x="0.0917969"
+                        y="19.0919"
+                        width="27"
+                        height="4"
+                        transform="rotate(-45 0.0917969 19.0919)"
+                        fill="white"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="19"
+                      viewBox="0 0 22 19"
+                      fill="none"
+                    >
+                      <path
+                        d="M0.78125 3.4898H21.0938C21.5252 3.4898 21.875 3.14261 21.875 2.71429V0.77551C21.875 0.347186 21.5252 0 21.0938 0H0.78125C0.349756 0 0 0.347186 0 0.77551V2.71429C0 3.14261 0.349756 3.4898 0.78125 3.4898ZM0.78125 11.2449H21.0938C21.5252 11.2449 21.875 10.8977 21.875 10.4694V8.53061C21.875 8.10229 21.5252 7.7551 21.0938 7.7551H0.78125C0.349756 7.7551 0 8.10229 0 8.53061V10.4694C0 10.8977 0.349756 11.2449 0.78125 11.2449ZM0.78125 19H21.0938C21.5252 19 21.875 18.6528 21.875 18.2245V16.2857C21.875 15.8574 21.5252 15.5102 21.0938 15.5102H0.78125C0.349756 15.5102 0 15.8574 0 16.2857V18.2245C0 18.6528 0.349756 19 0.78125 19Z"
+                        fill="white"
+                      />
+                    </svg>
+                  )}
                 </Link>
               </li>
-              <li className="icon-home">
+              <li className="icon-home" onClick={handleHomeClick}>
                 <Link to="/">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -59,15 +104,19 @@ function Header() {
                 </Link>
               </li>
             </div>
-            <div className="menu">
+            <div className={`menu ${menuOpen ? "show-menu" : ""}`}>
               {category.slice(0, 10).map((category) => (
-                <li key={category.id} className="nav-item">
+                <li
+                  key={category.id}
+                  className="nav-item"
+                  onClick={handleNavItemClick}
+                >
                   <Link to={`/categorys/${category.id}`}>{category.ten}</Link>
                   {category.tags.length > 0 && (
                     <div className="tag">
                       <ul className="sub-menu">
                         {category.tags.map((tag) => (
-                          <li key={tag.id}>
+                          <li key={tag.id} onClick={handleNavItemClick}>
                             <Link to={`/tags/${tag.id}`} title={tag.ten}>
                               {tag.ten}
                             </Link>
@@ -82,6 +131,35 @@ function Header() {
           </ul>
         </div>
       </nav>
+      <div className={`all-list  ${menuOpen ? "show-menu" : ""}`}>
+        <div className="container slide-menu">
+          {category.map(
+            (category) =>
+              category.tags.length > 0 && (
+                <li
+                  key={category.id}
+                  className="nav-item"
+                  onClick={handleNavItemClick}
+                >
+                  <Link to={`/categorys/${category.id}`}>{category.ten}</Link>
+                  {category.tags.length > 0 && (
+                    <div className="tag">
+                      <ul className="sub-menu">
+                        {category.tags.map((tag) => (
+                          <li key={tag.id} onClick={handleNavItemClick}>
+                            <Link to={`/tags/${tag.id}`} title={tag.ten}>
+                              {tag.ten}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </li>
+              )
+          )}
+        </div>
+      </div>
     </div>
   );
 }

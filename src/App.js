@@ -8,7 +8,6 @@ import NavBar from "@components/Layout/Header/NavBar";
 import HeaderTop from "@components/Layout/Header/HeaderTop";
 import Footer from "@components/Layout/Footer/Footer";
 import { SearchProvider } from "./components/SearchContext";
-import AllListPage from "./pages/AllList/AllListPage";
 function App() {
   return (
     <div className="page-container">
@@ -23,7 +22,6 @@ function App() {
               <Route path="/tags/:id" element={<TagPage />} />
               <Route path="/newsdetail/:id" element={<NewsDetailPage />} />
               <Route path="/search" element={<Search />} />
-              <Route path="/alllist" element={<AllListPage/>} />
             </Routes>
           </div>
           <Footer />

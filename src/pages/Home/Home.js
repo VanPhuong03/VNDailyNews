@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -57,6 +55,7 @@ function Home() {
     }
   }, [homedata, topViewedNews]);
 
+  console.log(homedata)
   return (
     <Container className="content home-page">
       <Row>
@@ -145,8 +144,12 @@ function Home() {
           </Row>
         </Col>
       </Row>
+      <Row>
+
+      </Row>
     </Container>
   );
 }
 
 export default Home;
+

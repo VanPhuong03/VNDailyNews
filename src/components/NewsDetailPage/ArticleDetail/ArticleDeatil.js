@@ -66,6 +66,7 @@ const ArticleDetail = ({ inforNews, tags }) => {
   };
 
   const contentDetails = JSON.parse(inforNews.noidungchitiet);
+  console.log(inforNews.noidungchitiet); 
 
   useEffect(() => {
     const images = document.querySelectorAll(".richtext-content img");
@@ -92,6 +93,10 @@ const ArticleDetail = ({ inforNews, tags }) => {
     return () => lightbox.destroy();
   }, [inforNews]);
 
+
+  console.log(typeof contentDetails);
+
+  
   return (
     <div className="article-detail container">
       <div className="d-flex justify-content-between nav">
@@ -114,7 +119,6 @@ const ArticleDetail = ({ inforNews, tags }) => {
           <CurrentTime />
         </div>
       </div>
-
       <p className="title">{inforNews.tiede}</p>
       <p className="summary-content">
         <strong>{inforNews.noidungtomtat}</strong>

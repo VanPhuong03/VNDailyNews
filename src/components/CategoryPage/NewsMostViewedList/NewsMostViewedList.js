@@ -21,7 +21,7 @@ const NewsSlider = ({ newsMostViewedList }) => {
   }
   if (newsMostViewedList.length < 3) {
     return (
-      <div className="news-list d-flex justify-content-between">
+      <div className="news-list d-flex ">
         {newsMostViewedList.map((newslist) => (
           <div key={newslist.id} className="news-item">
             <a href={`/newsdetail/${newslist.id}`}>
