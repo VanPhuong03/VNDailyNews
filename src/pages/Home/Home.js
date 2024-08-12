@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
+import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { fetchDashboardNews } from "../../services/newsService";
@@ -13,6 +14,12 @@ function Home() {
   const [topViewedNews, setTopViewedNews] = useState(null);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true); // kiểm soát khi nào cần tải dữ liệu
+  const [isHomePage, setIsHomePage] = useState(false);
+
+  useEffect(() => {
+    // Kiểm tra nếu đang ở trang chính
+    setIsHomePage(window.location.pathname === "/");
+  }, []);
 
   useEffect(() => {
     const getNewsData = async () => {
@@ -31,23 +38,25 @@ function Home() {
         setLoading(false);
       }
     };
-    getNewsData(page);
-  }, [page]);
+    if (isHomePage) {
+      getNewsData(page);
+    }
+  }, [page, isHomePage]);
 
   useEffect(() => {
     const handleScroll = () => {
       if (
+        isHomePage &&
         window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 2 &&
+          document.documentElement.offsetHeight - 2 &&
         hasMore
       ) {
         setPage((prevPage) => prevPage + 1);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasMore]);
+  }, [hasMore, isHomePage]);
 
   useEffect(() => {
     if (!topViewedNews && homedata.length > 0 && homedata[0].news.length > 0) {
@@ -55,7 +64,6 @@ function Home() {
     }
   }, [homedata, topViewedNews]);
 
-  console.log(homedata)
   return (
     <Container className="content home-page">
       <Row>
@@ -86,7 +94,7 @@ function Home() {
             </Row>
           )}
           <Row className="news-by-category">
-            {homedata.map(
+            {homedata.slice(0, 4).map(
               (category) =>
                 category.news.length > 0 && (
                   <div key={category.id} className="home">
@@ -99,6 +107,13 @@ function Home() {
                           {category.ten}
                         </a>
                       </div>
+                      <ul className="tags">
+                        {category.tags.slice(0, 2).map((tag) => (
+                          <li key={tag.id}>
+                            <Link to={`/tags/${tag.id}`}>{tag.ten}</Link>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                     <div className="news">
                       {category.news.slice(0, 4).map((newsItem, index) => (
@@ -145,11 +160,62 @@ function Home() {
         </Col>
       </Row>
       <Row>
-
+        <Col className="news-by-category2">
+          {homedata.slice(4).map(
+            (category) =>
+              category.news.length > 0 && (
+                <div key={category.id} className="home">
+                  <div className="category-and-tag d-flex align-items-center">
+                    <div className="title-category">
+                      <a
+                        href={`/categorys/${category.id}`}
+                        className="category m-0"
+                      >
+                        {category.ten}
+                      </a>
+                    </div>
+                    <ul className="tags">
+                      {category.tags.slice(0,4).map((tag) => (
+                        <li key={tag.id}>
+                          <Link to={`/tags/${tag.id}`}>{tag.ten}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="news">
+                    {category.news.slice(0, 4).map((newsItem, index) => (
+                      <div key={newsItem.id}>
+                        <div className="img">
+                          <a href={`/newsdetail/${newsItem.id}`}>
+                            <img
+                              src={newsItem.anhdaidien}
+                              alt={newsItem.tieude}
+                            ></img>
+                          </a>
+                        </div>
+                        <div className="title">
+                          <a
+                            href={`/newsdetail/${newsItem.id}`}
+                            className="main-title"
+                          >
+                            {newsItem.tieude}
+                          </a>
+                          {index === 0 && (
+                            <p className="summary-content ">
+                              {newsItem.noidungtomtat}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+          )}
+        </Col>
       </Row>
     </Container>
   );
 }
 
 export default Home;
-

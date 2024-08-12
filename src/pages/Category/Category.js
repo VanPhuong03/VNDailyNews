@@ -12,7 +12,6 @@ import images from "@assets/imgs";
 import { fetchCategoryPage} from "../../services/newsService";
 
 function CategoryPage() {
-  const [data, setData] = useState([]);
   const { id } = useParams();
   const [category, setCategory] = useState([]);
   const [newsNewList, setNewsNewList] = useState([]);
@@ -28,7 +27,6 @@ function CategoryPage() {
     const fetchCategoryData = async () => {
       try {
         const data = await fetchCategoryPage(id);
-        setData(data);
         setCategory(data.category);
         setNewsNewList(data.newsNewList);
         setNewsMostViewedList(data.newsMostViewedList);
@@ -85,7 +83,7 @@ function CategoryPage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasMoreTags]);
-  console.log(data);
+
   return (
     <div className="category-page  container">
       <div className="header-category">

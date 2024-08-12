@@ -1,4 +1,4 @@
-.tags-page {
+.latest-news {
   .news-item {
     padding-bottom: 20px;
     padding-top: 20px;
@@ -31,11 +31,10 @@
       }
     }
   }
-
   .first-news-item {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 481px;
     padding-top: 0 !important;
     margin-bottom: 40px;
     border: none;
@@ -75,6 +74,7 @@
     }
   }
 }
+
 .main-title,
 .summary-content {
   display: -webkit-box;

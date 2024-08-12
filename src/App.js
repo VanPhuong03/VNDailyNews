@@ -4,6 +4,8 @@ import Category from "@pages/Category/Category";
 import Search from "@pages/Search/Search";
 import NewsDetailPage from "@pages/NewsDetail/NewsDetailPage";
 import TagPage from "@pages/Tag/TagPage";
+import LatestNews from "./pages/LatestNews/LatestNews";
+import RecommendedNews from "./pages/RecommenedNews/RecommenedNews";
 import NavBar from "@components/Layout/Header/NavBar";
 import HeaderTop from "@components/Layout/Header/HeaderTop";
 import Footer from "@components/Layout/Footer/Footer";
@@ -22,6 +24,8 @@ function App() {
               <Route path="/tags/:id" element={<TagPage />} />
               <Route path="/newsdetail/:id" element={<NewsDetailPage />} />
               <Route path="/search" element={<Search />} />
+              <Route path="/latestnews" element={<LatestNews />} />
+              <Route path="/recommendednews" element={<RecommendedNews />} />
             </Routes>
           </div>
           <Footer />

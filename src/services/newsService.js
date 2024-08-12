@@ -89,3 +89,29 @@ export const fetchTagData = async (id, page = 1, limit = 5) => {
 //   );
 //   return response.data.data;
 // };
+
+// call api danh sách tin tức mới nhất 
+export const fetchLatestNews= async (limit = 10) => {
+  try {
+    const response = await axios.get(
+      `${API_ENDPOINTS.NEWS}/new?limit=${limit}`
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error(" Có lỗi xảy ra khi gọi API:", error);
+    throw error;
+  }
+};
+
+// call api danh sách tin tức đề xuất
+export const fetchRecommendedNews= async (limit = 10) => {
+  try {
+    const response = await axios.get(
+      `${API_ENDPOINTS.NEWS}/propose?limit=${limit}`
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error(" Có lỗi xảy ra khi gọi API:", error);
+    throw error;
+  }
+};

@@ -1,35 +1,41 @@
-// src/ArticleList.js
+
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import API_ENDPOINTS from "../../config/api";
+import { fetchLatestNews } from "../../services/newsService";
 import "./LatestNewsList.scss";
 
 function LatestNewsList() {
   const [newslist, setNews] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`${API_ENDPOINTS.NEWS}/new`)
-      .then((response) => {
-        setNews(response.data.data);
-      })
-      .catch((error) => {
+    const getLatestNews = async () => {
+      try {
+        const data = await fetchLatestNews();
+        setNews(data);
+      } catch (error) {
         console.error("Có lỗi xảy ra khi gọi API:", error);
-      });
+      }
+    }
+    getLatestNews()
   }, []);
+
+  const handleShowMore = () => {
+    navigate("/latestnews"); // Điều hướng đến trang chi tiết bài viết đề xuất
+  };
+
   return (
     <div className="latest_news-list">
       <div className="title-latest-news">
         <a href="/">Tin tức mới nhất</a>
       </div>
-      {newslist.map((news) => (
+      {newslist.slice(0, 5).map((news) => (
         <div key={news.id} className="news-item">
-          <Row className="">
-            <Col xl={5} lg={6} md={8} className="">
-              <div className="image ">
+          <Row>
+            <Col xl={5} lg={6} md={8}>
+              <div className="image">
                 <Link to={`/newsdetail/${news.id}`}>
                   <img
                     src={news.anhdaidien}
@@ -43,11 +49,29 @@ function LatestNewsList() {
               <Link to={`/newsdetail/${news.id}`} className="main-title">
                 {news.tieude}
               </Link>
-              {/* <p>{news.noidungtomtat}</p> */}
             </Col>
           </Row>
         </div>
       ))}
+      {newslist.length > 5 && (
+        <button className="see-more-button" onClick={handleShowMore}>
+          <span>Xem thêm</span>
+          <svg
+            width="9"
+            height="16"
+            viewBox="0 0 9 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="icon"
+          >
+            <path
+              d="M8.70711 8.70711C9.09763 8.31658 9.09763 7.68342 8.70711 7.29289L2.34315 0.928932C1.95262 0.538408 1.31946 0.538408 0.928932 0.928932C0.538408 1.31946 0.538408 1.95262 0.928932 2.34315L6.58579 8L0.928932 13.6569C0.538408 14.0474 0.538408 14.6805 0.928932 15.0711C1.31946 15.4616 1.95262 15.4616 2.34315 15.0711L8.70711 8.70711ZM6.5 9H8V7H6.5V9Z"
+              fill="white"
+              className="icon-path"
+            />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
