@@ -19,7 +19,7 @@ function RecommenNewsList() {
   }, []);
 
   const handleShowMore = () => {
-    navigate("/recommended-news"); // Điều hướng đến trang chi tiết bài viết đề xuất
+    navigate("/recommendednews"); // Điều hướng đến trang chi tiết bài viết đề xuất
   };
   return (
     <div className="latest_news-list">
