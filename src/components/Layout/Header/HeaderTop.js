@@ -80,9 +80,9 @@ function Header() {
               </button>
             </form>
             <div className="user">
-              <Link className="register pl-2">Đăng ký</Link>
+              <a className="register pl-2">Đăng ký</a>
               <span>/</span>
-              <Link className="login">Đăng nhập</Link>
+              <a className="login">Đăng nhập</a>
             </div>
           </div>
         </div>
