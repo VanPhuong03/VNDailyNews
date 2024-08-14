@@ -80,9 +80,9 @@ function Header() {
               </button>
             </form>
             <div className="user">
-              <a className="register pl-2">Đăng ký</a>
+              <a href="http://localhost:5000/register" target="_blank"  rel="noopener noreferrer" className="register pl-2">Đăng ký</a>
               <span>/</span>
-              <a className="login">Đăng nhập</a>
+              <a href="http://localhost:5000/login" target="_blank"  rel="noopener noreferrer" className="login">Đăng nhập</a>
             </div>
           </div>
         </div>
