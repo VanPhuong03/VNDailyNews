@@ -29,7 +29,7 @@ function LatestNewsList() {
   return (
     <div className="latest_news-list">
       <div className="title-latest-news">
-        <a href="/">Tin tức mới nhất</a>
+        <Link to="/latestnews">Tin tức mới nhất</Link>
       </div>
       {newslist.slice(0, 5).map((news) => (
         <div key={news.id} className="news-item">

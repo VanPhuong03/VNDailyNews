@@ -35,13 +35,6 @@ export const fetchCategoryPage = async (id, page = 1, limit = 5) => {
     throw error;
   }
 };
-// api lấy thêm các thẻ
-// export const loadMoreTags = async (id, page) => {
-//   const response = await axios.get(
-//     `${API_ENDPOINTS.CATEGORYS}/${id}/?page=${page}`
-//   );
-//   return response.data.data;
-// };
 
 // call api trang chi tiết bài đăng
 export const fetchArticleById = async (id) => {
@@ -82,13 +75,6 @@ export const fetchTagData = async (id, page = 1, limit = 5) => {
     throw error;
   }
 };
-// // //api lấy thêm bài viết ở mỗi  thể loại
-// export const loadMoreNewsTags = async (id, page, limit = 2 ) => {
-//   const response = await axios.get(
-//     `${API_ENDPOINTS.TAGS}/${id}/?page=${page}&limit=${limit}`
-//   );
-//   return response.data.data;
-// };
 
 // call api danh sách tin tức mới nhất 
 export const fetchLatestNews= async (limit = 10) => {
@@ -115,3 +101,10 @@ export const fetchRecommendedNews= async (limit = 10) => {
     throw error;
   }
 };
+
+
+
+
+
+
+

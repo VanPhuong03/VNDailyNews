@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import { fetchDashboardNews } from "../../services/newsService";
 import RecommenNewsList from "@components/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
@@ -64,6 +65,10 @@ function Home() {
     }
   }, [homedata, topViewedNews]);
 
+  useDocumentTitle("Trang chủ - Hệ thống tin tức 24h");
+
+  console.log(homedata);
+
   return (
     <Container className="content home-page">
       <Row>
@@ -71,21 +76,21 @@ function Home() {
           {topViewedNews && (
             <Row className="top_news-view">
               <Col lg={6} md={12} className="">
-                <a href={`/newsdetail/${topViewedNews.id}`}>
+                <Link to={`/newsdetail/${topViewedNews.id}`}>
                   <img
                     src={topViewedNews.anhdaidien}
                     alt={topViewedNews.tieude}
                   ></img>
-                </a>
+                </Link>
               </Col>
               <Col lg={6} md={12} className="">
                 <div className="title">
-                  <a
-                    href={`/newsdetail/${topViewedNews.id}`}
+                  <Link
+                    to={`/newsdetail/${topViewedNews.id}`}
                     className="main-title"
                   >
                     {topViewedNews.tieude}
-                  </a>
+                  </Link>
                   <p className="summary-content">
                     {topViewedNews.noidungtomtat}
                   </p>
@@ -119,20 +124,20 @@ function Home() {
                       {category.news.slice(0, 4).map((newsItem, index) => (
                         <div key={newsItem.id}>
                           <div className="img">
-                            <a href={`/newsdetail/${newsItem.id}`}>
+                            <Link to={`/newsdetail/${newsItem.id}`}>
                               <img
                                 src={newsItem.anhdaidien}
                                 alt={newsItem.tieude}
                               ></img>
-                            </a>
+                            </Link>
                           </div>
                           <div className="title">
-                            <a
-                              href={`/newsdetail/${newsItem.id}`}
+                            <Link
+                              to={`/newsdetail/${newsItem.id}`}
                               className="main-title"
                             >
                               {newsItem.tieude}
-                            </a>
+                            </Link>
                             {index === 0 && (
                               <p className="summary-content ">
                                 {newsItem.noidungtomtat}
@@ -175,7 +180,7 @@ function Home() {
                       </a>
                     </div>
                     <ul className="tags">
-                      {category.tags.slice(0,4).map((tag) => (
+                      {category.tags.slice(0, 4).map((tag) => (
                         <li key={tag.id}>
                           <Link to={`/tags/${tag.id}`}>{tag.ten}</Link>
                         </li>
@@ -186,20 +191,20 @@ function Home() {
                     {category.news.slice(0, 4).map((newsItem, index) => (
                       <div key={newsItem.id}>
                         <div className="img">
-                          <a href={`/newsdetail/${newsItem.id}`}>
+                          <Link to={`/newsdetail/${newsItem.id}`}>
                             <img
                               src={newsItem.anhdaidien}
                               alt={newsItem.tieude}
                             ></img>
-                          </a>
+                          </Link>
                         </div>
                         <div className="title">
-                          <a
-                            href={`/newsdetail/${newsItem.id}`}
+                          <Link
+                            to={`/newsdetail/${newsItem.id}`}
                             className="main-title"
                           >
                             {newsItem.tieude}
-                          </a>
+                          </Link>
                           {index === 0 && (
                             <p className="summary-content ">
                               {newsItem.noidungtomtat}

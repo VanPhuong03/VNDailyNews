@@ -31,7 +31,7 @@ function RecommenNewsList({ setTopViewedNews }) {
   return (
     <div className="latest_news-list">
       <div className="title-latest-news">
-        <a href="/">Tin tức đề xuất</a>
+        <Link to="/recommendednews" >Tin tức đề xuất</Link>
       </div>
       {newslist.slice(0, 5).map((news) => (
         <div key={news.id} className="news-item">

@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import { fetchTagData } from "../../services/newsService";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import "./index.scss";
 function TagPage() {
   const { id } = useParams();
@@ -75,10 +76,13 @@ function TagPage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasMoreTags]);
+  
+  useDocumentTitle(tag ? `${tag.ten} - Hệ thống tin tức 24h` : 'Đang tải...');
 
   if (!tag || !category) {
     return <div>Loading...</div>;
   }
+  
 
   return (
     <div className="container content">

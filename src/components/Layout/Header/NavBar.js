@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { fetchCategory } from "../../../services/newsService";
 import { Link, useNavigate } from "react-router-dom";
@@ -38,11 +37,17 @@ function Header() {
     }
   };
 
+
   return (
     <div className="header-bottom d-flex justify-content-between">
       <nav className="navbar navbar-expand-lg container">
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
+            <div className="logo">
+              <Link to="/" className="logo">
+              <span>LOGO</span>
+              </Link>
+            </div>
             <div className="icon-actions">
               <li className="click_on_off_menu" onClick={handleMenuToggle}>
                 <Link to="#">
@@ -165,6 +170,11 @@ function Header() {
 }
 
 export default Header;
+
+
+
+
+
 
 
 

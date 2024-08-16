@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link} from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import { fetchRecommendedNews } from "../../services/newsService";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import "./index.scss";
@@ -20,6 +21,8 @@ function RecommenedNews() {
     };
     getLatestNews();
   }, []);
+
+  useDocumentTitle("Tin tức đề xuất - Hệ thống tin tức 24h")
 
   return (
     <div className="container content">

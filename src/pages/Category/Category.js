@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import NewsByTag from "@components/CategoryPage/NewsByTags/NewByTag";
 import NewsNewList from "@components/CategoryPage/NewsNewList/NewsNewList";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import NewsMostViewedList from "@components/CategoryPage/NewsMostViewedList/NewsMostViewedList";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import "./index.scss";
 import images from "@assets/imgs";
-import { fetchCategoryPage} from "../../services/newsService";
+import { fetchCategoryPage } from "../../services/newsService";
 
 function CategoryPage() {
   const { id } = useParams();
@@ -23,6 +24,8 @@ function CategoryPage() {
   const [loadingTags, setLoadingTags] = useState(false);
   const [hasMoreTags, setHasMoreTags] = useState(true); // kiểm soát khi nào cần tải dữ liệu
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
@@ -32,6 +35,7 @@ function CategoryPage() {
         setNewsMostViewedList(data.newsMostViewedList);
         setNewsByTagListOfCategory(data.newsByTagListOfCategory);
         setHasMoreTags(data.newsByTagListOfCategory.length > 0); // kiểm tra xem có thẻ ban đầu tồn tại chưa
+
       } catch (error) {
         console.error("Có lỗi xảy ra khi gọi API:", error);
       }
@@ -41,7 +45,7 @@ function CategoryPage() {
     window.scrollTo(0, 0);
     setPage(1); // đặt lại trang về 1 khi id thay đôi
     setHasMoreTags(true); // đặt lại khi id thay đổi
-  }, [id]);
+  }, [id,navigate]);
 
   useEffect(() => {
     const fetchMoreTags = async () => {
@@ -72,7 +76,7 @@ function CategoryPage() {
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 2 &&
+          document.documentElement.offsetHeight - 2 &&
         hasMoreTags
       ) {
         setLoadingTags(true);
@@ -83,6 +87,11 @@ function CategoryPage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasMoreTags]);
+
+  const title = category ? `${category.ten} - Hệ thống tin tức 24h` : 'Đang tải...';
+  useDocumentTitle(title);
+  
+
 
   return (
     <div className="category-page  container">

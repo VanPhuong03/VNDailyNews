@@ -1,6 +1,7 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 import "./index.scss";
 function NewsByTag({ newsByTagListOfCategory }) {
   if (newsByTagListOfCategory.length === 0) {
@@ -12,17 +13,17 @@ function NewsByTag({ newsByTagListOfCategory }) {
         (newslist) =>
           newslist.news.length > 0 && (  // thể loại nào không có bài đăng thì sẽ không hiển thị
             <div key={newslist.id} className="mt-5">
-              <h2><a href={`/tags/${newslist.id}`}>{newslist.ten}</a></h2>
+              <h2><Link to={`/tags/${newslist.id}`}>{newslist.ten}</Link></h2>
               {newslist.news.map((news) => (
                 <Row key={news.id} className="news-item">
                   <Col lg={4} className="images">
-                    <a href={`/newsdetail/${news.id}`}>
+                    <Link to={`/newsdetail/${news.id}`}>
                       <img src={news.anhdaidien} alt={news.tieude}></img>
-                    </a>
+                    </Link>
                   </Col>
                   <Col lg={8}>
                     <div className="main-title">
-                      <a href={`/newsdetail/${news.id}`}> {news.tieude}</a>
+                      <Link to={`/newsdetail/${news.id}`}> {news.tieude}</Link>
                     </div>
                     <p className="summary-content">{news.noidungtomtat}</p>
                   </Col>

@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./index.scss";
@@ -24,13 +25,13 @@ const NewsSlider = ({ newsMostViewedList }) => {
       <div className="news-list d-flex ">
         {newsMostViewedList.map((newslist) => (
           <div key={newslist.id} className="news-item">
-            <a href={`/newsdetail/${newslist.id}`}>
+            <Link to={`/newsdetail/${newslist.id}`}>
               <img src={newslist.anhdaidien} alt={newslist.tieude} />
-            </a>
+            </Link>
             <div className="title">
-              <a href={`/newsdetail/${newslist.id}`} className="main-title">
+              <Link to={`/newsdetail/${newslist.id}`} className="main-title">
                 {newslist.tieude}
-              </a>
+              </Link>
             </div>
           </div>
         ))}
@@ -42,13 +43,13 @@ const NewsSlider = ({ newsMostViewedList }) => {
       <Slider {...settings}>
         {newsMostViewedList.map((newslist) => (
           <div key={newslist.id} className="news-item">
-            <a href={`/newsdetail/${newslist.id}`}>
+            <Link to={`/newsdetail/${newslist.id}`}>
               <img src={newslist.anhdaidien} alt={newslist.tieude} />
-            </a>
+            </Link>
             <div className="title">
-              <a href={`/newsdetail/${newslist.id}`} className="main-title">
+              <Link to={`/newsdetail/${newslist.id}`} className="main-title">
                 {newslist.tieude}
-              </a>
+              </Link>
             </div>
           </div>
         ))}

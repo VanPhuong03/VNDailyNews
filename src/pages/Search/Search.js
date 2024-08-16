@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSearch } from "@components/SearchContext";
 import API_ENDPOINTS from "../../config/api";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -50,6 +51,8 @@ const SearchPage = () => {
     }
   };
 
+  useDocumentTitle("Tìm kiếm - Hệ thống tin tức 24h")
+  
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 

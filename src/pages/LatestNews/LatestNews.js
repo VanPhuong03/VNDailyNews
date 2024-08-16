@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link} from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import { fetchLatestNews } from "../../services/newsService";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
 import "./index.scss";
@@ -21,11 +22,14 @@ function LatestNews() {
     getLatestNews();
   }, []);
 
+  useDocumentTitle("Tin tức mới nhất - Hệ thống tin tức 24h")
+
+  console.log( newsList)
   return (
     <div className="container content">
       <Row>
         <Col lg={9} className="latest-news">
-          <h1>Tin tức mới nhất</h1>
+          <h1>Tin tức mới nhất </h1>
           <div>
             {newsList.map((news, index) => (
               <Row
@@ -39,7 +43,7 @@ function LatestNews() {
                 </Col>
                 <Col lg={8} className="title">
                   <div className="main-title">
-                    <Link href={`/newsdetail/${news.id}`}> {news.tieude}</Link>
+                    <Link to={`/newsdetail/${news.id}`}> {news.tieude}</Link>
                   </div>
                   <p className="summary-content">{news.noidungtomtat}</p>
                 </Col>

@@ -4,6 +4,7 @@ import { useSearch } from "../../SearchContext";
 import images from "@assets/imgs";
 import "./Header.scss";
 import CurrentTime from "../../CurrentTime";
+import BACKEND_URL from "../../../config/backendUrl";
 // import Weather from "../../Weather/Weather";
 
 function Header() {
@@ -36,6 +37,7 @@ function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
 
   return (
     <div className="header-top">
@@ -80,9 +82,19 @@ function Header() {
               </button>
             </form>
             <div className="user">
-              <a href="http://localhost:5000/register" target="_blank"  rel="noopener noreferrer" className="register pl-2">Đăng ký</a>
+              <a
+                href={`${BACKEND_URL}/register`}
+                className="register pl-2"
+              >
+                Đăng ký
+              </a>
               <span>/</span>
-              <a href="http://localhost:5000/login" target="_blank"  rel="noopener noreferrer" className="login">Đăng nhập</a>
+              <a
+                href={`${BACKEND_URL}/login`}
+                className="login"
+              >
+                Đăng nhập
+              </a>
             </div>
           </div>
         </div>

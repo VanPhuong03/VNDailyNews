@@ -7,4 +7,5 @@ const API_ENDPOINTS = {
   TAGS: process.env.REACT_APP_TAGS_URL,
 };
 
+
 export default API_ENDPOINTS;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./NewsNewList.scss"
 function Test({ newsNewList }) {
   if (newsNewList.length === 0) {
@@ -8,13 +9,13 @@ function Test({ newsNewList }) {
       <div className="newsNewList">
         {newsNewList.map((newslist, index) => (
           <div key={newslist.id} className={`news-item news-item-${index + 1}`}>
-            <a href={`/newsdetail/${newslist.id}`}>
+            <Link to={`/newsdetail/${newslist.id}`}>
               <img src={newslist.anhdaidien} alt={newslist.tieude}></img>
-            </a>
+            </Link>
             <div className="title">
-            <a href={`/newsdetail/${newslist.id}`} className="main-title">
+            <Link to={`/newsdetail/${newslist.id}`} className="main-title">
               {newslist.tieude}
-            </a>
+            </Link>
             </div>
             {/* <p>{newslist.noidungtomtat}</p> */}
           </div>
