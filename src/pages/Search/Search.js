@@ -1,26 +1,28 @@
 // SearchPage.js
 import React, { useEffect } from "react";
 import axios from "axios";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSearch } from "@components/SearchContext";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { Link, useLocation } from "react-router-dom";
+import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
+import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
+import CurrentTime from "../../components/CurrentTime";
 import API_ENDPOINTS from "../../config/api";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
+import "./index.scss";
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
 const SearchPage = () => {
   const query = useQuery();
-  const navigate = useNavigate();
-  const { searchTerm, setSearchTerm } = useSearch();
   const searchValue = query.get("query");
   const [results, setResults] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
 
   useEffect(() => {
-    setSearchTerm(searchValue || ""); // Đặt giá trị tìm kiếm từ URL vào Context
-
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -42,46 +44,58 @@ const SearchPage = () => {
     };
 
     fetchData();
-  }, [searchValue, setSearchTerm]);
+  }, [searchValue]);
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    if (searchTerm.trim()) {
-      navigate(`/search?query=${searchTerm}`);
-    }
-  };
+  useDocumentTitle("Tìm kiếm - Hệ thống tin tức 24h");
 
-  useDocumentTitle("Tìm kiếm - Hệ thống tin tức 24h")
-  
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="container content">
-      <form className="form-inline my-2 my-lg-0" onSubmit={handleSearch}>
-        <input
-          className="form-control"
-          placeholder="Tìm kiếm..."
-          aria-label="Search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        ></input>
-        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Tìm kiếm
-        </button>
-      </form>
-      <h1>Kết quả tìm kiếm cho "{searchValue}"</h1>
-      <ul>
-        {results.map((result) => (
-          <li key={result.id}>
-            <Link to={`/newsdetail/${result.id}`}>
-              <img src={result.anhdaidien} alt={result.tieude} />
-              <h2>{result.tieude}</h2>
-              <p>{result.noidungtomtat}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="container content search_page">
+      <Row>
+        <Col lg={9} className="main-search">
+          <div className="d-flex justify-content-between nav">
+            <ul className="d-flex">
+              <li>
+                <Link to="/" className="home">
+                  Trang chủ
+                </Link>
+              </li>
+              <li className="tags">
+                <span  className="tag">
+                  Search
+                </span>
+              </li>
+            </ul>
+            <div className="time">
+              <CurrentTime />
+            </div>
+          </div>
+          <h1>Kết quả tìm kiếm cho "{searchValue}"</h1>
+          <ul>
+            {results.map((news) => (
+              <Row key={news.id} className="news-item">
+                <Col lg={4} className="images">
+                  <Link to={`/newsdetail/${news.id}`}>
+                    <img src={news.anhdaidien} alt={news.tieude}></img>
+                  </Link>
+                </Col>
+                <Col lg={8}>
+                  <div className="main-title">
+                    <Link to={`/newsdetail/${news.id}`}> {news.tieude}</Link>
+                  </div>
+                  <p className="summary-content">{news.noidungtomtat}</p>
+                </Col>
+              </Row>
+            ))}
+          </ul>
+        </Col>
+        <Col lg={3}>
+          <LatestNewsList />
+          <RecommenNewsList />
+        </Col>
+      </Row>
     </div>
   );
 };

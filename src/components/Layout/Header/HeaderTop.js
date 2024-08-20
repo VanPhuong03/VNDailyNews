@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSearch } from "../../SearchContext";
 import images from "@assets/imgs";
@@ -12,11 +12,15 @@ function Header() {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const searchInputRef = useRef(null);  // Tạo ref cho input tìm kiếm
+
   const handleSearch = (event) => {
     event.preventDefault();
     if (searchTerm.trim()) {
       navigate(`/search?query=${searchTerm}`);
     }
+    setSearchTerm('');  // Xóa giá trị của searchTerm
+    searchInputRef.current.focus();  // Focus vào input sau khi tìm kiếm
   };
 
   useEffect(() => {
@@ -62,6 +66,7 @@ function Header() {
                 aria-label="Search"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                ref={searchInputRef}
               />
               <button
                 className="btn btn-outline-success my-2 my-sm-0"
@@ -83,13 +88,6 @@ function Header() {
             </form>
             <div className="user">
               <a
-                href={`${BACKEND_URL}/register`}
-                className="register pl-2"
-              >
-                Đăng ký
-              </a>
-              <span>/</span>
-              <a
                 href={`${BACKEND_URL}/login`}
                 className="login"
               >
@@ -104,3 +102,8 @@ function Header() {
 }
 
 export default Header;
+
+
+
+
+

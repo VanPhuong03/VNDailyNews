@@ -10,6 +10,7 @@ import NavBar from "@components/Layout/Header/NavBar";
 import HeaderTop from "@components/Layout/Header/HeaderTop";
 import Footer from "@components/Layout/Footer/Footer";
 import { SearchProvider } from "./components/SearchContext";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 function App() {
   return (
     <div className="page-container">
@@ -26,6 +27,7 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="/latestnews" element={<LatestNews />} />
               <Route path="/recommendednews" element={<RecommendedNews />} />
+              <Route path="*" element={<NotFoundPage />} /> 
             </Routes>
           </div>
           <Footer />

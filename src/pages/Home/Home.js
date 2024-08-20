@@ -67,7 +67,6 @@ function Home() {
 
   useDocumentTitle("Trang chủ - Hệ thống tin tức 24h");
 
-  console.log(homedata);
 
   return (
     <Container className="content home-page">
@@ -113,7 +112,7 @@ function Home() {
                         </a>
                       </div>
                       <ul className="tags">
-                        {category.tags.slice(0, 2).map((tag) => (
+                        {category.tags.map((tag) => (
                           <li key={tag.id}>
                             <Link to={`/tags/${tag.id}`}>{tag.ten}</Link>
                           </li>
@@ -180,7 +179,7 @@ function Home() {
                       </a>
                     </div>
                     <ul className="tags">
-                      {category.tags.slice(0, 4).map((tag) => (
+                      {category.tags.map((tag) => (
                         <li key={tag.id}>
                           <Link to={`/tags/${tag.id}`}>{tag.ten}</Link>
                         </li>
@@ -224,3 +223,6 @@ function Home() {
 }
 
 export default Home;
+
+
+

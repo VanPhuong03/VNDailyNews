@@ -30,7 +30,6 @@ function Header() {
     }
     navigate("/"); // Điều hướng về trang Home
   };
-
   const handleNavItemClick = () => {
     if (menuOpen) {
       setMenuOpen(false); // Đóng menu khi nhấn vào một nav-item

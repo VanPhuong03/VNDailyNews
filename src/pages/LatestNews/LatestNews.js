@@ -24,7 +24,6 @@ function LatestNews() {
 
   useDocumentTitle("Tin tức mới nhất - Hệ thống tin tức 24h")
 
-  console.log( newsList)
   return (
     <div className="container content">
       <Row>

@@ -66,7 +66,6 @@ const ArticleDetail = ({ inforNews, tags }) => {
   };
 
   const contentDetails = JSON.parse(inforNews.noidungchitiet);
-  console.log(inforNews.noidungchitiet); 
 
   useEffect(() => {
     const images = document.querySelectorAll(".richtext-content img");
@@ -94,7 +93,6 @@ const ArticleDetail = ({ inforNews, tags }) => {
   }, [inforNews]);
 
 
-  console.log(typeof contentDetails);
 
   
   return (
