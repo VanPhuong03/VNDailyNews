@@ -122,7 +122,7 @@ const ArticleDetail = ({ inforNews, tags }) => {
         <strong>{inforNews.noidungtomtat}</strong>
       </p>
       <div id="photo-swipe-gallery" className="content-details fr-view">
-        {contentDetails.map((content, index) => renderContent(content, index))}
+        {Array.isArray(contentDetails) && contentDetails.map((content, index) => renderContent(content, index))}
       </div>
     </div>
   );
