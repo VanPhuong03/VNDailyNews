@@ -27,6 +27,9 @@ function RecommenNewsList({ setTopViewedNews }) {
     navigate("/recommendednews"); // Điều hướng đến trang chi tiết bài viết đề xuất
   };
 
+  if ( newslist.length === 0){
+    return null;
+  }
 
   return (
     <div className="latest_news-list">

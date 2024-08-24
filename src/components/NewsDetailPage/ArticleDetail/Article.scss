@@ -1,4 +1,5 @@
 .article-detail {
+  margin-bottom: 20px;
   .nav {
     margin-bottom: 15px;
     ul {
@@ -35,13 +36,15 @@
     color: #252525;
   }
   .content-details {
-    // .images{
-    //   text-align: center;
-    //   img{
-    //     width: 500px;
-    //     height: auto;
-    //   }
-    // }
+    table tbody tr td {
+      text-align: center;
+      text-wrap: nowrap;
+      padding: 8px;
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .images {
       text-align: center;
       img{
@@ -61,6 +64,7 @@
     img {
       margin: 15px 0;
       cursor: pointer;
+      max-width: 847px !important;
     }
   }
 }
