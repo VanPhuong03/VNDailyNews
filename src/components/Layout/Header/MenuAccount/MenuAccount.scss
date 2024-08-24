@@ -1,0 +1,18 @@
+.btn-menu-account {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: none;
+
+    &:focus {
+        box-shadow: unset;
+    }
+}
+
+.dropdown-menu-account {
+    z-index: 100;
+}
+
+.dropdown-menu-account-item:hover {
+    color: var(--white-color);
+    background-color: var(--primary-hover-color);
+}

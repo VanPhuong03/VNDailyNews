@@ -6,13 +6,32 @@ import "./Header.scss";
 import CurrentTime from "../../CurrentTime";
 import BACKEND_URL from "../../../config/backendUrl";
 // import Weather from "../../Weather/Weather";
+import Cookies from 'js-cookie';
+import { jwtDecode } from "jwt-decode";
+import { MenuAccount } from './MenuAccount'
 
 function Header() {
   const { searchTerm, setSearchTerm } = useSearch();
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
-
   const searchInputRef = useRef(null);  // Tạo ref cho input tìm kiếm
+
+  let checkLogin = false;
+  const accessToken = Cookies.get('accessToken') || '';
+  let userInfor = null;
+  if (accessToken) {
+    try {
+      const tokenDecode = jwtDecode(accessToken);
+      userInfor = {
+        tenhienthi: tokenDecode?.tenhienthi,
+        id: tokenDecode?.id,
+        vaitro_id: tokenDecode?.vaitro_id
+      }
+      checkLogin = tokenDecode.exp > Date.now() / 1000; // kiểm tra xem người dùng đã login chưa và token còn thời gian sống hay không;
+    } catch (err) {
+      checkLogin = false;
+    }
+  }
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -86,14 +105,17 @@ function Header() {
                 </svg>
               </button>
             </form>
-            <div className="user">
+            {checkLogin && userInfor ?
+              (
+                <MenuAccount userInfor={userInfor} />
+              ) :
               <a
                 href={`${BACKEND_URL}/login`}
-                className="login"
+                className="login h-100 btn"
               >
                 Đăng nhập
               </a>
-            </div>
+            }
           </div>
         </div>
       </div>
