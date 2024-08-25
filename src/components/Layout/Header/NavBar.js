@@ -1,12 +1,15 @@
+
+
 import React, { useState, useEffect } from "react";
 import { fetchCategory } from "../../../services/newsService";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useMenuContext } from "../../MenuContext";
 import "./Header.scss";
 
 function Header() {
   const [category, setCategories] = useState([]);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const { isMenuOpen, toggleMenu, closeMenu} = useMenuContext();
+
 
   useEffect(() => {
     const getCategories = async () => {
@@ -21,19 +24,11 @@ function Header() {
   }, []);
 
   const handleMenuToggle = () => {
-    setMenuOpen((prevState) => !prevState); // Đảo trạng thái của menuOpen
+   toggleMenu();
   };
 
-  const handleHomeClick = () => {
-    if (menuOpen) {
-      setMenuOpen(false); // Đóng menu khi nhấn vào Home
-    }
-    navigate("/"); // Điều hướng về trang Home
-  };
-  const handleNavItemClick = () => {
-    if (menuOpen) {
-      setMenuOpen(false); // Đóng menu khi nhấn vào một nav-item
-    }
+  const handleCloseMenu = () => {
+    closeMenu();
   };
 
 
@@ -50,7 +45,7 @@ function Header() {
             <div className="icon-actions">
               <li className="click_on_off_menu" onClick={handleMenuToggle}>
                 <Link to="#">
-                  {menuOpen ? (
+                  {isMenuOpen ? (
                     <svg
                       width="22"
                       height="22"
@@ -91,7 +86,7 @@ function Header() {
                   )}
                 </Link>
               </li>
-              <li className="icon-home" onClick={handleHomeClick}>
+              <li className="icon-home" onClick={handleCloseMenu}>
                 <Link to="/">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -108,19 +103,19 @@ function Header() {
                 </Link>
               </li>
             </div>
-            <div className={`menu ${menuOpen ? "show-menu" : ""}`}>
+            <div className={`menu ${isMenuOpen ? "show-menu" : ""}`}>
               {category.slice(0, 10).map((category) => (
                 <li
                   key={category.id}
                   className="nav-item"
-                  onClick={handleNavItemClick}
+                  onClick={handleCloseMenu}
                 >
                   <Link to={`/categorys/${category.id}`}>{category.ten}</Link>
                   {category.tags.length > 0 && (
                     <div className="tag">
                       <ul className="sub-menu">
                         {category.tags.map((tag) => (
-                          <li key={tag.id} onClick={handleNavItemClick}>
+                          <li key={tag.id} onClick={handleCloseMenu}>
                             <Link to={`/tags/${tag.id}`} title={tag.ten}>
                               {tag.ten}
                             </Link>
@@ -135,7 +130,7 @@ function Header() {
           </ul>
         </div>
       </nav>
-      <div className={`all-list  ${menuOpen ? "show-menu" : ""}`}>
+      <div className={`all-list  ${isMenuOpen ? "show-menu" : ""}`}>
         <div className="container slide-menu">
           {category.map(
             (category) =>
@@ -143,14 +138,14 @@ function Header() {
                 <li
                   key={category.id}
                   className="nav-item"
-                  onClick={handleNavItemClick}
+                  onClick={handleCloseMenu}
                 >
                   <Link to={`/categorys/${category.id}`}>{category.ten}</Link>
                   {category.tags.length > 0 && (
                     <div className="tag">
                       <ul className="sub-menu">
                         {category.tags.map((tag) => (
-                          <li key={tag.id} onClick={handleNavItemClick}>
+                          <li key={tag.id} onClick={handleCloseMenu}>
                             <Link to={`/tags/${tag.id}`} title={tag.ten}>
                               {tag.ten}
                             </Link>
@@ -169,6 +164,12 @@ function Header() {
 }
 
 export default Header;
+
+
+
+
+
+
 
 
 

@@ -10,29 +10,32 @@ import NavBar from "@components/Layout/Header/NavBar";
 import HeaderTop from "@components/Layout/Header/HeaderTop";
 import Footer from "@components/Layout/Footer/Footer";
 import { SearchProvider } from "./components/SearchContext";
+import { MenuProvider } from "./components/MenuContext";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 function App() {
   return (
     <div className="page-container">
-      <SearchProvider>
-        <Router>
-          <HeaderTop />
-          <NavBar />
-          <div className="content-wrap">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/categorys/:id" element={<Category />} />
-              <Route path="/tags/:id" element={<TagPage />} />
-              <Route path="/newsdetail/:id" element={<NewsDetailPage />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/latestnews" element={<LatestNews />} />
-              <Route path="/recommendednews" element={<RecommendedNews />} />
-              <Route path="*" element={<NotFoundPage />} /> 
-            </Routes>
-          </div>
-          <Footer />
-        </Router>
-      </SearchProvider>
+      <MenuProvider>
+        <SearchProvider>
+          <Router>
+            <HeaderTop />
+            <NavBar />
+            <div className="content-wrap">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/categorys/:id" element={<Category />} />
+                <Route path="/tags/:id" element={<TagPage />} />
+                <Route path="/newsdetail/:id" element={<NewsDetailPage />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/latestnews" element={<LatestNews />} />
+                <Route path="/recommendednews" element={<RecommendedNews />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </div>
+            <Footer />
+          </Router>
+        </SearchProvider>
+      </MenuProvider>
     </div>
   );
 }

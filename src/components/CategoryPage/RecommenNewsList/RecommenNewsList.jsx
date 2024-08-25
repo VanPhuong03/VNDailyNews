@@ -21,6 +21,12 @@ function RecommenNewsList() {
   const handleShowMore = () => {
     navigate("/recommendednews"); // Điều hướng đến trang chi tiết bài viết đề xuất
   };
+
+
+  if ( newslist.length === 0){
+    return null;
+  }
+
   return (
     <div className="latest_news-list">
       <div className="title-latest-news">
