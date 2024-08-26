@@ -8,13 +8,15 @@ import BACKEND_URL from "../../../config/backendUrl";
 // import Weather from "../../Weather/Weather";
 import Cookies from 'js-cookie';
 import { jwtDecode } from "jwt-decode";
-import { MenuAccount } from './MenuAccount'
+import { MenuAccount } from './MenuAccount';
+import { useMenuContext } from "../../MenuContext";
 
 function Header() {
   const { searchTerm, setSearchTerm } = useSearch();
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const searchInputRef = useRef(null);  // Tạo ref cho input tìm kiếm
+  const {closeMenu} = useMenuContext();
 
   let checkLogin = false;
   const accessToken = Cookies.get('accessToken') || '';
@@ -40,6 +42,7 @@ function Header() {
     }
     setSearchTerm('');  // Xóa giá trị của searchTerm
     searchInputRef.current.focus();  // Focus vào input sau khi tìm kiếm
+    closeMenu();
   };
 
   useEffect(() => {

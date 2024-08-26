@@ -1,14 +1,14 @@
-
 // TagPages
 
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { fetchTagData } from "../../services/newsService";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
+import CurrentTime from "../../components/CurrentTime";
 import "./index.scss";
 function TagPage() {
   const { id } = useParams();
@@ -76,18 +76,34 @@ function TagPage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasMoreTags]);
-  
-  useDocumentTitle(tag ? `${tag.ten} - Hệ thống tin tức 24h` : 'Đang tải...');
+
+  useDocumentTitle(tag ? `${tag.ten} - Hệ thống tin tức 24h` : "Đang tải...");
 
   if (!tag || !category) {
-    return <div>Loading...</div>;
+    return <div className="container content">Loading...</div>;
   }
-  
 
   return (
     <div className="container content">
       <Row>
         <Col lg={9} md={12} className="tags-page">
+        <div className="d-flex justify-content-between nav">
+          <ul className="d-flex">
+            <li>
+              <Link to="/" className="home">
+                Trang chủ
+              </Link>
+            </li>
+            <li className="tags">
+              <Link to={`/tags/${tag.id}`} key={tag.id} className="tag pl-2">
+                {tag.ten}
+              </Link>
+            </li>
+          </ul>
+          <div className="time">
+            <CurrentTime />
+          </div>
+        </div>
           {/* <h2>{category.ten}</h2> */}
           <h3>{tag.ten}</h3>
           <div>
