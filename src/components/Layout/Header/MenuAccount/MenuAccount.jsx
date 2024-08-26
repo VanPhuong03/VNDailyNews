@@ -27,6 +27,12 @@ function MenuAccount(props) {
       <div className="dropdown-menu dropdown-menu-account dropdown-menu-right">
         <a
           className="dropdown-item dropdown-menu-account-item"
+          href="/"
+        >
+          Thông tin người dùng
+        </a>
+        <a
+          className="dropdown-item dropdown-menu-account-item"
           href={`${process.env.REACT_APP_BACKEND_URL}/news`}
         >
           Chuyển đến trang quản lý
