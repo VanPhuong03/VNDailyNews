@@ -1,5 +1,6 @@
 // src/components/SimilarNews.js
 import React from "react";
+import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./SimilarNews.scss"
@@ -19,7 +20,7 @@ const SimilarNews = ({ newsSimilarList }) => {
             </Col>
             <Col lg={8}>
               <div className="main-title">
-                <a href={`/newsdetail/${news.id}`}> {news.tieude}</a>
+                <Link to={`/newsdetail/${news.id}`}> {news.tieude}</Link>
               </div>
               <p className="summary-content">{news.noidungtomtat}</p>
             </Col>

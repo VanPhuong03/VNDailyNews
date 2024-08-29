@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useCallback} from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { fetchArticleById, updateViewCount } from "../../services/newsService";
@@ -12,24 +12,36 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 const NewsDetailPage = () => {
   const { id } = useParams(); // lấy ID từ url khi người dùng ấn vào bài viết
   const [article, setArticle] = useState(null);
+  const navigate = useNavigate();
 
   const updateViewCountCallback = useCallback(() => {
     updateViewCount(id);
   }, [id]);
 
   useEffect(() => {
+    setArticle(null);
     const fetchArticle = async () => {
       try {
         const data = await fetchArticleById(id);
-        setArticle(data);
+        if(data){
+          setArticle(data);
         updateViewCountCallback();
+        }
+        else{
+          navigate('*');
+        }
       } catch (error) {
+       if(error.response && (error.response.status === 404 || error.response.status === 403) ){
+        navigate("/404")
+       }
+       else{
         console.error("Đã xảy ra lỗi khi tìm dữ liệu bài viết", error);
+       }
       }
     };
 
     fetchArticle();
-  }, [id, updateViewCountCallback]);
+  }, [id, updateViewCountCallback, navigate]);
 
   useDocumentTitle(article ? `${article.inforNews.tiede} - Hệ thống tin tức 24h` : 'Đang tải...');
 
@@ -48,9 +60,15 @@ const NewsDetailPage = () => {
           </div>
           <SimilarNews newsSimilarList={newsSimilarList} />
         </Col>
-        <Col lg={3}>
-          <LatestNewsList />
-          <RecommenNewsList />
+        <Col lg={3} md={12} className="content-right">
+          <Row>
+            <Col lg={12} md={6} className="mb-3">
+              <LatestNewsList />
+            </Col>
+            <Col lg={12} md={6}>
+              <RecommenNewsList />
+            </Col>
+          </Row>
         </Col>
       </Row>
     </div>

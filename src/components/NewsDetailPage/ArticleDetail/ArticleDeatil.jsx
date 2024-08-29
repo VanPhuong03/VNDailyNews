@@ -52,6 +52,29 @@ const ArticleDetail = ({ inforNews, tags }) => {
             {content.name && <p className="image-name">{content.name}</p>}
           </div>
         );
+      case "video":
+        return (
+          <div className="video-container" key={content.src}>
+            <video
+              controls
+              width="100%"
+              onError={(e) => {
+                e.target.outerHTML =
+                  '<p class="video-error">Video không khả dụng.</p>';
+              }}
+            >
+              <source
+                src={content.src}
+                type="video/mp4"
+                onError={(e) => {
+                  e.target.parentNode.outerHTML =
+                    '<p class="video-error">Video không khả dụng.</p>';
+                }}
+              />
+            </video>
+            {content.name && <p className="video-name">{content.name}</p>}
+          </div>
+        );
       case "richtext":
         return (
           <div
@@ -66,6 +89,7 @@ const ArticleDetail = ({ inforNews, tags }) => {
   };
 
   const contentDetails = JSON.parse(inforNews.noidungchitiet);
+  console.log(inforNews.noidungchitiet);
 
   useEffect(() => {
     const images = document.querySelectorAll(".richtext-content img");
@@ -92,9 +116,6 @@ const ArticleDetail = ({ inforNews, tags }) => {
     return () => lightbox.destroy();
   }, [inforNews]);
 
-
-
-  
   return (
     <div className="article-detail container">
       <div className="d-flex justify-content-between nav">
@@ -122,7 +143,8 @@ const ArticleDetail = ({ inforNews, tags }) => {
         <strong>{inforNews.noidungtomtat}</strong>
       </p>
       <div id="photo-swipe-gallery" className="content-details fr-view">
-        {Array.isArray(contentDetails) && contentDetails.map((content, index) => renderContent(content, index))}
+        {Array.isArray(contentDetails) &&
+          contentDetails.map((content, index) => renderContent(content, index))}
       </div>
     </div>
   );

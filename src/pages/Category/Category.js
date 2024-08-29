@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import NewsByTag from "@components/CategoryPage/NewsByTags/NewByTag";
 import NewsNewList from "@components/CategoryPage/NewsNewList/NewsNewList";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
@@ -110,7 +110,7 @@ function CategoryPage() {
             <div className={`tags ${showAllTags ? "show" : ""}`}>
               {newsByTagListOfCategory.slice(0, 5).map((newslist) => (
                 <li key={newslist.id} className="tags">
-                  <a href={`/tags/${newslist.id}`}>{newslist.ten}</a>
+                  <Link to={`/tags/${newslist.id}`}>{newslist.ten}</Link>
                 </li>
               ))}
             </div>

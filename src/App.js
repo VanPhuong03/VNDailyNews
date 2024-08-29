@@ -29,6 +29,7 @@ function App() {
                 <Route path="/search" element={<Search />} />
                 <Route path="/latestnews" element={<LatestNews />} />
                 <Route path="/recommendednews" element={<RecommendedNews />} />
+                <Route path="/404" element={<NotFoundPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </div>
