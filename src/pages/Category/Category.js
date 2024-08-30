@@ -30,14 +30,24 @@ function CategoryPage() {
     const fetchCategoryData = async () => {
       try {
         const data = await fetchCategoryPage(id);
-        setCategory(data.category);
-        setNewsNewList(data.newsNewList);
-        setNewsMostViewedList(data.newsMostViewedList);
-        setNewsByTagListOfCategory(data.newsByTagListOfCategory);
-        setHasMoreTags(data.newsByTagListOfCategory.length > 0); // kiểm tra xem có thẻ ban đầu tồn tại chưa
-
+        if (data) {
+          setCategory(data.category);
+          setNewsNewList(data.newsNewList);
+          setNewsMostViewedList(data.newsMostViewedList);
+          setNewsByTagListOfCategory(data.newsByTagListOfCategory);
+          setHasMoreTags(data.newsByTagListOfCategory.length > 0); // kiểm tra xem có thẻ ban đầu tồn tại chưa
+        } else {
+          navigate("*");
+        }
       } catch (error) {
-        console.error("Có lỗi xảy ra khi gọi API:", error);
+        if (
+          error.response &&
+          (error.response.status === 404 || error.response.status === 403)
+        ) {
+          navigate("/404");
+        } else {
+          console.error("Có lỗi xảy ra khi gọi API:", error);
+        }
       }
     };
 
@@ -45,7 +55,7 @@ function CategoryPage() {
     window.scrollTo(0, 0);
     setPage(1); // đặt lại trang về 1 khi id thay đôi
     setHasMoreTags(true); // đặt lại khi id thay đổi
-  }, [id,navigate]);
+  }, [id, navigate]);
 
   useEffect(() => {
     const fetchMoreTags = async () => {
@@ -88,10 +98,10 @@ function CategoryPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasMoreTags]);
 
-  const title = category ? `${category.ten} - Hệ thống tin tức 24h` : 'Đang tải...';
+  const title = category
+    ? `${category.ten} - Hệ thống tin tức 24h`
+    : "Đang tải...";
   useDocumentTitle(title);
-  
-
 
   return (
     <div className="category-page  container">

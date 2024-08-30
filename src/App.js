@@ -12,6 +12,7 @@ import Footer from "@components/Layout/Footer/Footer";
 import { SearchProvider } from "./components/SearchContext";
 import { MenuProvider } from "./components/MenuContext";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import UserPage from "./pages/User/UserPage";
 function App() {
   return (
     <div className="page-container">
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/search" element={<Search />} />
                 <Route path="/latestnews" element={<LatestNews />} />
                 <Route path="/recommendednews" element={<RecommendedNews />} />
+                <Route path="/user" element={<UserPage/>} />
                 <Route path="/404" element={<NotFoundPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>

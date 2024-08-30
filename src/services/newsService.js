@@ -55,7 +55,7 @@ export const updateViewCount = async (id) => {
     try {
       await axios.put(`${API_ENDPOINTS.NEWS}/${id}`);
       viewedArticles.push(id);
-      localStorage.setItem("viewedArticles", JSON.stringify(viewedArticles));
+      // localStorage.setItem("viewedArticles", JSON.stringify(viewedArticles));
     } catch (error) {
       console.error("Đã xảy ra lỗi khi cập nhật số lượng lượt xem", error);
       throw error;
@@ -76,8 +76,8 @@ export const fetchTagData = async (id, page = 1, limit = 5) => {
   }
 };
 
-// call api danh sách tin tức mới nhất 
-export const fetchLatestNews= async (limit = 10) => {
+// call api danh sách tin tức mới nhất
+export const fetchLatestNews = async (limit = 10) => {
   try {
     const response = await axios.get(
       `${API_ENDPOINTS.NEWS}/new?limit=${limit}`
@@ -90,7 +90,7 @@ export const fetchLatestNews= async (limit = 10) => {
 };
 
 // call api danh sách tin tức đề xuất
-export const fetchRecommendedNews= async (limit = 10) => {
+export const fetchRecommendedNews = async (limit = 10) => {
   try {
     const response = await axios.get(
       `${API_ENDPOINTS.NEWS}/propose?limit=${limit}`
@@ -101,10 +101,3 @@ export const fetchRecommendedNews= async (limit = 10) => {
     throw error;
   }
 };
-
-
-
-
-
-
-

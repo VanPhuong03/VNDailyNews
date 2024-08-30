@@ -75,6 +75,29 @@ const ArticleDetail = ({ inforNews, tags }) => {
             {content.name && <p className="video-name">{content.name}</p>}
           </div>
         );
+      case "audio":
+        return (
+          <div className="audio-container" key={content.src}>
+            <audio
+              controls
+              width="100%"
+              onError={(e) => {
+                e.target.outerHTML =
+                  '<p class="audio-error">Âm thanh không khả dụng.</p>';
+              }}
+            >
+              <source
+                src={content.src}
+                type="audio/mpeg"
+                onError={(e) => {
+                  e.target.parentNode.outerHTML =
+                    '<p class="audio-error">Âm thanh không khả dụng.</p>';
+                }}
+              />
+            </audio>
+            {content.name && <p className="audio-name">{content.name}</p>}
+          </div>
+        );
       case "richtext":
         return (
           <div

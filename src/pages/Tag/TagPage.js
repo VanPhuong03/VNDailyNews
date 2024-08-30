@@ -1,7 +1,7 @@
 // TagPages
 
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { fetchTagData } from "../../services/newsService";
@@ -20,16 +20,29 @@ function TagPage() {
   const [loadingTags, setLoadingTags] = useState(false);
   const [hasMoreTags, setHasMoreTags] = useState(true); // kiểm soát khi nào cần tải dữ liệu
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const getTagData = async () => {
       try {
         const data = await fetchTagData(id);
-        setTag(data.tag);
-        setCategory(data.category);
-        setNewsList(data.newsList);
-        setHasMoreTags(data.newsList.length > 0);
+        if (data) {
+          setTag(data.tag);
+          setCategory(data.category);
+          setNewsList(data.newsList);
+          setHasMoreTags(data.newsList.length > 0);
+        } else {
+          navigate("*");
+        }
       } catch (error) {
-        console.error("Error fetching tag data:", error);
+        if (
+          error.response &&
+          (error.response.status === 404 || error.response.status === 403)
+        ) {
+          navigate("/404");
+        } else {
+          console.error("Error fetching tag data:", error);
+        }
       }
     };
 
@@ -87,23 +100,23 @@ function TagPage() {
     <div className="container content">
       <Row>
         <Col lg={9} md={12} className="tags-page">
-        <div className="d-flex justify-content-between nav">
-          <ul className="d-flex">
-            <li>
-              <Link to="/" className="home">
-                Trang chủ
-              </Link>
-            </li>
-            <li className="tags">
-              <Link to={`/tags/${tag.id}`} key={tag.id} className="tag pl-2">
-                {tag.ten}
-              </Link>
-            </li>
-          </ul>
-          <div className="time">
-            <CurrentTime />
+          <div className="d-flex justify-content-between nav">
+            <ul className="d-flex">
+              <li>
+                <Link to="/" className="home">
+                  Trang chủ
+                </Link>
+              </li>
+              <li className="tags">
+                <Link to={`/tags/${tag.id}`} key={tag.id} className="tag pl-2">
+                  {tag.ten}
+                </Link>
+              </li>
+            </ul>
+            <div className="time">
+              <CurrentTime />
+            </div>
           </div>
-        </div>
           {/* <h2>{category.ten}</h2> */}
           <h3>{tag.ten}</h3>
           <div>

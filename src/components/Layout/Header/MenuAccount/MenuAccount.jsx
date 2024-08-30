@@ -1,7 +1,19 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./MenuAccount.scss";
 
 function MenuAccount(props) {
   const { userInfor } = props;
+
+  const navigate = useNavigate();
+
+  const handleUserPageNavigation = (e) => {
+    e.preventDefault(); 
+    if (userInfor) {
+      navigate('/user', { state: { userInfor } });
+    }
+  };
+
   return (
     <div className="dropdown menu-account">
       <button
@@ -27,7 +39,8 @@ function MenuAccount(props) {
       <div className="dropdown-menu dropdown-menu-account dropdown-menu-right">
         <a
           className="dropdown-item dropdown-menu-account-item"
-          href="/"
+          href="/user"
+          onClick={handleUserPageNavigation}
         >
           Thông tin người dùng
         </a>
