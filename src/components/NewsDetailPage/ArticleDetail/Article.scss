@@ -66,5 +66,12 @@
       cursor: pointer;
       max-width: 847px !important;
     }
+    .audio-container{
+      width: 500px;
+      margin: 0 auto;
+      audio{
+        width: 100%;
+      }
+    }
   }
 }

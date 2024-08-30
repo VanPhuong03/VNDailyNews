@@ -1,14 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import error from "../../assets/imgs/404.png";
 import "./index.scss";
 
 const NotFoundPage = () => {
   return (
     <div className="not-found container content">
-      <h1>404 - Không tìm thấy trang</h1>
-      <h5>
-        Truy cập của bạn có thể bị lỗi hoặc không tim thấy nội dung yêu cầu
-      </h5>
+      <div className="img-404">
+        <img src={error} alt="404"></img>
+      </div>
+      <div className="notification">
+        <h3>
+          Truy cập của bạn có thể bị lỗi hoặc không tìm thấy nội dung yêu cầu
+        </h3>
         <Link to="/" className="home">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -22,8 +26,9 @@ const NotFoundPage = () => {
               fill="white"
             />
           </svg>
-         <span> Trở về trang chủ</span>
+          <span> Trở về trang chủ</span>
         </Link>
+      </div>
     </div>
   );
 };
