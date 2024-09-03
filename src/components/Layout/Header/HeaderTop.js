@@ -6,20 +6,20 @@ import "./Header.scss";
 import CurrentTime from "../../CurrentTime";
 import BACKEND_URL from "../../../config/backendUrl";
 // import Weather from "../../Weather/Weather";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
-import { MenuAccount } from './MenuAccount';
+import { MenuAccount } from "./MenuAccount";
 import { useMenuContext } from "../../MenuContext";
 
 function Header() {
   const { searchTerm, setSearchTerm } = useSearch();
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
-  const searchInputRef = useRef(null);  // Tạo ref cho input tìm kiếm
-  const {closeMenu} = useMenuContext();
+  const searchInputRef = useRef(null); // Tạo ref cho input tìm kiếm
+  const { closeMenu } = useMenuContext();
 
   let checkLogin = false;
-  const accessToken = Cookies.get('accessToken') || '';
+  const accessToken = Cookies.get("accessToken") || "";
   let userInfor = null;
   if (accessToken) {
     try {
@@ -27,8 +27,8 @@ function Header() {
       userInfor = {
         tenhienthi: tokenDecode?.tenhienthi,
         id: tokenDecode?.id,
-        vaitro_id: tokenDecode?.vaitro_id
-      }
+        vaitro_id: tokenDecode?.vaitro_id,
+      };
       checkLogin = tokenDecode.exp > Date.now() / 1000; // kiểm tra xem người dùng đã login chưa và token còn thời gian sống hay không;
     } catch (err) {
       checkLogin = false;
@@ -40,8 +40,8 @@ function Header() {
     if (searchTerm.trim()) {
       navigate(`/search?query=${searchTerm}`);
     }
-    setSearchTerm('');  // Xóa giá trị của searchTerm
-    searchInputRef.current.focus();  // Focus vào input sau khi tìm kiếm
+    setSearchTerm(""); // Xóa giá trị của searchTerm
+    searchInputRef.current.focus(); // Focus vào input sau khi tìm kiếm
     closeMenu();
   };
 
@@ -64,11 +64,10 @@ function Header() {
     };
   }, []);
 
-
   return (
-    <div className="header-top">
+    <div className="header-top container">
       <div className={`header-top-scroll ${isScrolled ? "scrolled" : ""}`}>
-        <div className="header-top container">
+        {/* <div className="container d-flex justify-content-between"> */}
           <div className="logo-time">
             <Link to="/" className="logo">
               <img src={images.logo} alt="VNDailyNews" />
@@ -108,27 +107,18 @@ function Header() {
                 </svg>
               </button>
             </form>
-            {checkLogin && userInfor ?
-              (
-                <MenuAccount userInfor={userInfor} />
-              ) :
-              <a
-                href={`${BACKEND_URL}/login`}
-                className="login h-100 btn"
-              >
+            {checkLogin && userInfor ? (
+              <MenuAccount userInfor={userInfor} />
+            ) : (
+              <a href={`${BACKEND_URL}/login`} className="login h-100 btn">
                 Đăng nhập
               </a>
-            }
+            )}
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );
 }
 
 export default Header;
-
-
-
-
-

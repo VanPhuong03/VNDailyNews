@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+// import Col from "react-bootstrap/Col";
 import { fetchLatestNews } from "../../services/newsService";
 import "./LatestNewsList.scss";
 
@@ -18,8 +17,8 @@ function LatestNewsList() {
       } catch (error) {
         console.error("Có lỗi xảy ra khi gọi API:", error);
       }
-    }
-    getLatestNews()
+    };
+    getLatestNews();
   }, []);
 
   const handleShowMore = () => {
@@ -33,23 +32,21 @@ function LatestNewsList() {
       </div>
       {newslist.slice(0, 5).map((news) => (
         <div key={news.id} className="news-item">
-          <Row>
-            <Col xl={5} lg={6} md={8}>
-              <div className="image">
-                <Link to={`/newsdetail/${news.id}`}>
-                  <img
-                    src={news.anhdaidien}
-                    alt={news.tieude}
-                    className="news-image"
-                  />
-                </Link>
-              </div>
-            </Col>
-            <Col xl={7} lg={6} className="title">
+          <Row className="main-news">
+            <div className="image">
+              <Link to={`/newsdetail/${news.id}`}>
+                <img
+                  src={news.anhdaidien}
+                  alt={news.tieude}
+                  className="news-image"
+                />
+              </Link>
+            </div>
+            <div className="title">
               <Link to={`/newsdetail/${news.id}`} className="main-title">
                 {news.tieude}
               </Link>
-            </Col>
+            </div>
           </Row>
         </div>
       ))}

@@ -47,8 +47,8 @@
     }
     .images {
       text-align: center;
-      img{
-        width: 600px;
+      img {
+        width: 100%;
         height: auto;
       }
       .image-name {
@@ -64,14 +64,41 @@
     img {
       margin: 15px 0;
       cursor: pointer;
-      max-width: 847px !important;
     }
-    .audio-container{
+    .audio-container {
+      margin-top: 20px !important;
       width: 500px;
       margin: 0 auto;
-      audio{
+      audio {
         width: 100%;
       }
+    }
+    .video-container {
+      margin-top: 20px;
+      position: relative;
+      width: 100%; /* Chiều rộng của container */
+      padding-top: 56.25%; /* Để giữ tỷ lệ 16:9 */
+      overflow: hidden; /* Đảm bảo nội dung không tràn ra ngoài */
+    }
+
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-error {
+      color: red;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .video-name {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
     }
   }
 }

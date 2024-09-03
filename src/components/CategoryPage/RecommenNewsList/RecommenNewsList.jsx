@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchRecommendedNews } from "../../../services/newsService";
 function RecommenNewsList() {
@@ -22,36 +21,32 @@ function RecommenNewsList() {
     navigate("/recommendednews"); // Điều hướng đến trang chi tiết bài viết đề xuất
   };
 
-
-  if ( newslist.length === 0){
+  if (newslist.length === 0) {
     return null;
   }
 
   return (
     <div className="latest_news-list">
       <div className="title-latest-news">
-        <a href="/">Tin tức đề xuất</a>
+        <Link to="/recommendednews">Tin tức đề xuất</Link>
       </div>
       {newslist.slice(0, 5).map((news) => (
         <div key={news.id} className="news-item">
-          <Row className="">
-            <Col xl={5} lg={6} md={8} className="w-100 h-10">
-              <div className="image">
-                <Link to={`/newsdetail/${news.id}`}>
-                  <img
-                    src={news.anhdaidien}
-                    alt={news.tieude}
-                    className="news-image"
-                  />
-                </Link>
-              </div>
-            </Col>
-            <Col xl={7} lg={6} className="">
-              <Link to={`/newsdetail/${news.id}`} className="title">
+          <Row className="main-news">
+            <div className="image">
+              <Link to={`/newsdetail/${news.id}`}>
+                <img
+                  src={news.anhdaidien}
+                  alt={news.tieude}
+                  className="news-image"
+                />
+              </Link>
+            </div>
+            <div className="title">
+              <Link to={`/newsdetail/${news.id}`} className="main-title">
                 <p>{news.tieude}</p>
               </Link>
-              {/* <p>{news.noidungtomtat}</p> */}
-            </Col>
+            </div>
           </Row>
         </div>
       ))}

@@ -139,7 +139,7 @@ const ArticleDetail = ({ inforNews, tags }) => {
   }, [inforNews]);
 
   return (
-    <div className="article-detail container">
+    <div className="article-detail ">
       <div className="d-flex justify-content-between nav">
         <ul className="d-flex">
           <li>

@@ -1,4 +1,5 @@
 .newsNewList {
+  .desktop {
     margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -6,14 +7,14 @@
     // gap: 10px;
     align-items: start;
     height: 466px;
-  
-    .news-item {  
+
+    .news-item {
       img {
         width: 100%;
         height: auto;
       }
     }
-  
+
     .news-item-1 {
       grid-column: 2 / 5; /* Chiếm 3 cột ở giữa */
       grid-row: span 2; /* Chiếm cả hai hàng */
@@ -45,12 +46,12 @@
         height: 385px;
         object-fit: cover;
       }
-      .main-title{
+      .main-title {
         font-size: 24px;
         margin-top: 10px;
       }
     }
-  
+
     .news-item-2,
     .news-item-3 {
       grid-column: 1 / 2;
@@ -60,12 +61,12 @@
         height: 151px;
         object-fit: cover;
       }
-      .main-title{
+      .main-title {
         margin-top: 10px;
         font-size: 14px;
       }
     }
-  
+
     .news-item-4,
     .news-item-5 {
       grid-column: 5 / 6;
@@ -75,26 +76,71 @@
         height: 151px;
         object-fit: cover;
       }
-      .main-title{
+      .main-title {
         margin-top: 10px;
         font-size: 14px;
       }
     }
-  
+
     .news-item-2 {
       grid-row: 1;
     }
-  
+
     .news-item-3 {
       grid-row: 2;
     }
-  
+
     .news-item-4 {
       grid-row: 1;
     }
-  
+
     .news-item-5 {
       grid-row: 2;
     }
   }
-  
+  .mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .newsNewList {
+    .desktop {
+      display: none;
+    }
+    .mobile {
+      display: block !important;
+      .news-item {
+        display: flex;
+        margin-bottom: 10px;
+      }
+
+      .news-item-1 {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .news-item-1 img {
+        width: 100%;
+        height: auto; /* Maintain the aspect ratio */
+      }
+      .news-item:not(.news-item-1) img {
+        max-width: 150px;
+        margin: 0 15px 0 0;
+        height: 100% !important;
+        object-fit: cover;
+      }
+      .main-title {
+        color: black;
+        text-decoration: none;
+      }
+
+      /* Flex container to wrap items */
+      .news-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* Space between items */
+      }
+    }
+  }
+}

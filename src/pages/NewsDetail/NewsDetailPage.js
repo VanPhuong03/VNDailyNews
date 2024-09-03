@@ -62,10 +62,10 @@ const NewsDetailPage = () => {
         </Col>
         <Col lg={3} md={12} className="content-right">
           <Row>
-            <Col lg={12} md={6} className="mb-3">
+            <Col lg={12}className="mb-3">
               <LatestNewsList />
             </Col>
-            <Col lg={12} md={6}>
+            <Col lg={12}>
               <RecommenNewsList />
             </Col>
           </Row>

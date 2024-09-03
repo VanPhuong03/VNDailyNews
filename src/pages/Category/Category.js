@@ -104,7 +104,7 @@ function CategoryPage() {
   useDocumentTitle(title);
 
   return (
-    <div className="category-page  container">
+    <div className="category-page container">
       <div className="header-category">
         <ul className="d-flex align-items-center mb-0">
           <li className="icon-home d-flex align-items-center">

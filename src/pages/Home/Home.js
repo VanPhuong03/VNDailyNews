@@ -67,14 +67,13 @@ function Home() {
 
   useDocumentTitle("Trang chủ - Hệ thống tin tức 24h");
 
-
   return (
     <Container className="content home-page">
       <Row>
-        <Col lg={9} md={12} className="content-left">
+        <Col lg={9} md={12} sm={12} className="content-left">
           {topViewedNews && (
             <Row className="top_news-view">
-              <Col lg={6} md={12} className="">
+              <Col 	xl={6} lg={12}className="img">
                 <Link to={`/newsdetail/${topViewedNews.id}`}>
                   <img
                     src={topViewedNews.anhdaidien}
@@ -82,7 +81,7 @@ function Home() {
                   ></img>
                 </Link>
               </Col>
-              <Col lg={6} md={12} className="">
+              <Col xl={6} lg={12}  className="">
                 <div className="title">
                   <Link
                     to={`/newsdetail/${topViewedNews.id}`}
@@ -97,56 +96,56 @@ function Home() {
               </Col>
             </Row>
           )}
-          <Row className="news-by-category">
+          <Row  className="news-by-category">
             {homedata.slice(0, 4).map(
               (category) =>
                 category.news.length > 0 && (
-                  <div key={category.id} className="home">
-                    <div className="category-and-tag d-flex align-items-center">
-                      <div className="title-category">
-                        <a
-                          href={`/categorys/${category.id}`}
-                          className="category m-0"
-                        >
-                          {category.ten}
-                        </a>
-                      </div>
-                      <ul className="tags">
-                        {category.tags.map((tag) => (
-                          <li key={tag.id}>
-                            <Link to={`/tags/${tag.id}`}>{tag.ten}</Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="news">
-                      {category.news.slice(0, 4).map((newsItem, index) => (
-                        <div key={newsItem.id}>
-                          <div className="img">
-                            <Link to={`/newsdetail/${newsItem.id}`}>
-                              <img
-                                src={newsItem.anhdaidien}
-                                alt={newsItem.tieude}
-                              ></img>
-                            </Link>
-                          </div>
-                          <div className="title">
-                            <Link
-                              to={`/newsdetail/${newsItem.id}`}
-                              className="main-title"
-                            >
-                              {newsItem.tieude}
-                            </Link>
-                            {index === 0 && (
-                              <p className="summary-content ">
-                                {newsItem.noidungtomtat}
-                              </p>
-                            )}
-                          </div>
+                    <Col md={6} lg={12}  key={category.id} className="home">
+                      <div className="category-and-tag d-flex align-items-center">
+                        <div className="title-category">
+                          <a
+                            href={`/categorys/${category.id}`}
+                            className="category m-0"
+                          >
+                            {category.ten}
+                          </a>
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                        <ul className="tags">
+                          {category.tags.map((tag) => (
+                            <li key={tag.id}>
+                              <Link to={`/tags/${tag.id}`}>{tag.ten}</Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="news">
+                        {category.news.slice(0, 4).map((newsItem, index) => (
+                          <div key={newsItem.id}>
+                            <div className="img">
+                              <Link to={`/newsdetail/${newsItem.id}`}>
+                                <img
+                                  src={newsItem.anhdaidien}
+                                  alt={newsItem.tieude}
+                                ></img>
+                              </Link>
+                            </div>
+                            <div className="title">
+                              <Link
+                                to={`/newsdetail/${newsItem.id}`}
+                                className="main-title"
+                              >
+                                {newsItem.tieude}
+                              </Link>
+                              {index === 0 && (
+                                <p className="summary-content ">
+                                  {newsItem.noidungtomtat}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </Col>
                 )
             )}
           </Row>
@@ -154,10 +153,10 @@ function Home() {
         </Col>
         <Col lg={3} md={12} className="content-right">
           <Row>
-            <Col lg={12} md={6} className="mb-3">
+            <Col lg={12} className="mb-3">
               <LatestNewsList />
             </Col>
-            <Col lg={12} md={6} className="recommen">
+            <Col lg={12} className="recommen">
               <RecommenNewsList setTopViewedNews={setTopViewedNews} />
             </Col>
           </Row>
@@ -223,6 +222,3 @@ function Home() {
 }
 
 export default Home;
-
-
-
