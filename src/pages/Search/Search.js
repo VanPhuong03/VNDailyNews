@@ -9,6 +9,7 @@ import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/Recommen
 import CurrentTime from "../../components/CurrentTime";
 import API_ENDPOINTS from "../../config/api";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
+import Spinner from "react-bootstrap/Spinner";
 import "./index.scss";
 
 function useQuery() {
@@ -48,7 +49,14 @@ const SearchPage = () => {
 
   useDocumentTitle("Tìm kiếm - Hệ thống tin tức 24h");
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <p className="container content">
+        <div className="loading-spinner">
+          <Spinner animation="border" />
+        </div>
+      </p>
+    );
   if (error) return <p>Error: {error.message}</p>;
 
   return (
@@ -63,9 +71,7 @@ const SearchPage = () => {
                 </Link>
               </li>
               <li className="tags">
-                <span  className="tag">
-                  Search
-                </span>
+                <span className="tag">Search</span>
               </li>
             </ul>
             <div className="time">

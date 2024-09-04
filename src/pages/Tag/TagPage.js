@@ -9,7 +9,9 @@ import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/Recommen
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 import CurrentTime from "../../components/CurrentTime";
+import Spinner from "react-bootstrap/Spinner";
 import "./index.scss";
+
 function TagPage() {
   const { id } = useParams();
   const [tag, setTag] = useState(null);
@@ -50,7 +52,7 @@ function TagPage() {
     window.scrollTo(0, 0);
     setPage(1); // đặt lại trang về 1 khi id thay đôi
     setHasMoreTags(true); // đặt lại khi id thay đổi
-  }, [id]);
+  }, [id,navigate]);
 
   useEffect(() => {
     const fetchMoreTags = async () => {
@@ -93,7 +95,13 @@ function TagPage() {
   useDocumentTitle(tag ? `${tag.ten} - Hệ thống tin tức 24h` : "Đang tải...");
 
   if (!tag || !category) {
-    return <div className="container content">Loading...</div>;
+    return (
+      <div className="container content">
+        <div className="loading-spinner">
+          <Spinner animation="border" />
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -151,7 +159,13 @@ function TagPage() {
           </Row>
         </Col>
       </Row>
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <p>
+          <div className="loading-spinner">
+            <Spinner animation="border" />
+          </div>
+        </p>
+      )}
     </div>
   );
 }

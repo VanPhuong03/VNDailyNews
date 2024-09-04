@@ -5,16 +5,20 @@ import Col from "react-bootstrap/Col";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 import { fetchRecommendedNews } from "../../services/newsService";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
+import Spinner from "react-bootstrap/Spinner";
 import "./index.scss";
 
 function RecommenedNews() {
   const [newsList, setNews] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getLatestNews = async () => {
+      setLoading(true);
       try {
         const data = await fetchRecommendedNews();
         setNews(data);
+        setLoading(false)
       } catch (error) {
         console.error("Có lỗi xảy ra khi gọi API:", error);
       }
@@ -54,6 +58,11 @@ function RecommenedNews() {
           <LatestNewsList />
         </Col>
       </Row>
+      {loading && (
+        <div className="loading-spinner">
+          <Spinner animation="border" />
+        </div>
+      )}
     </div>
   );
 }

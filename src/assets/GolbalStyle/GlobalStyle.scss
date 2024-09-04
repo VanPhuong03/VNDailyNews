@@ -32,13 +32,7 @@
   ol {
     list-style: none;
   }
-  // img{
-  //   object-fit: cover;
-  // }
-  
-  // .container{
-  //   padding: 0;
-  // }
+
   .content {
     margin-top: 20px;
   }
@@ -57,19 +51,7 @@
     padding: 20px;
     text-align: center;
   }
-  // .main-title {
-  //   display: -webkit-box;
-  //   -webkit-line-clamp: 3;
-  //   -webkit-box-orient: vertical;
-  //   overflow: hidden;
-  //   text-overflow: ellipsis;
-  //   color: var(--black-color);
-  //   transition: all ease 0.3s;
-  //   font-weight: 600;
-  //   &:hover {
-  //     color: var(--primary-color);
-  //   }
-  // }
+
   
   @media (max-width: 1200px) {
     .container{
@@ -79,8 +61,20 @@
       display: none;
     }
   }
-  // @media (max-width: 375px) {
-  //   .container{
-  //     max-width: 370px;
-  //   }
-  // }
+
+
+
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.4em;
+    border-color: var(--primary-color) transparent transparent transparent; /* Thay đổi màu sắc của spinner */
+  }
+}

@@ -204,17 +204,19 @@
 .news-by-category2 {
   margin-top: 20px;
   padding: 0 15px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  // display: grid;
+  // grid-template-columns: repeat(2, 1fr);
+  // gap: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   @media (max-width: 1200px) {
     display: block;
-    grid-template-columns: 1fr;
   }
   .home {
     margin: 10px 0;
     border-bottom: 1px solid #e5e5e5;
-    max-width: 555px;
+    max-width: 540px;
     .news {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr; // Hai cột bằng nhau
@@ -353,3 +355,6 @@
     }
   }
 }
+
+
+

@@ -11,6 +11,7 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 import "./index.scss";
 import images from "@assets/imgs";
 import { fetchCategoryPage } from "../../services/newsService";
+import Spinner from "react-bootstrap/Spinner";
 
 function CategoryPage() {
   const { id } = useParams();
@@ -161,7 +162,11 @@ function CategoryPage() {
           </Row>
         </Col>
       </Row>
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <div className="loading-spinner">
+          <Spinner animation="border" />
+        </div>
+      )}
     </div>
   );
 }
