@@ -120,7 +120,7 @@ function CategoryPage() {
           <div className="tags-wrapper">
             <div className={`tags ${showAllTags ? "show" : ""}`}>
               {newsByTagListOfCategory.slice(0, 5).map((newslist) => (
-                <li key={newslist.id} className="tags">
+                <li key={newslist.id} className="tag">
                   <Link to={`/tags/${newslist.id}`}>{newslist.ten}</Link>
                 </li>
               ))}
@@ -146,8 +146,8 @@ function CategoryPage() {
         </ul>
       </div>
       <NewsNewList newsNewList={newsNewList} />
-      <Row className="mt-5">
-        <Col lg={9} md={12}>
+      <Row className="mt-5 responsive">
+        <Col lg={9} md={12} className="content-left">
           <NewsMostViewedList newsMostViewedList={newsMostViewedList} />
           <NewsByTag newsByTagListOfCategory={newsByTagListOfCategory} />
         </Col>

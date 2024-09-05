@@ -21,9 +21,7 @@ function CurrentDate() {
   const year = currentDate.getFullYear();
 
   return (
-    <div>
       <p className='m-0'> {day}, ngày {date}/{month}/{year}</p>
-    </div>
   );
 }
 

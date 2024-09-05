@@ -12,24 +12,24 @@ function NewsByTag({ newsByTagListOfCategory }) {
       {newsByTagListOfCategory.map(
         (newslist) =>
           newslist.news.length > 0 && (  // thể loại nào không có bài đăng thì sẽ không hiển thị
-            <div key={newslist.id} className="mt-5">
-              <h2><Link to={`/tags/${newslist.id}`}>{newslist.ten}</Link></h2>
+            <Col key={newslist.id} className="mt-5">
+              <h2 className="row"><Link to={`/tags/${newslist.id}`}>{newslist.ten}</Link></h2>
               {newslist.news.map((news) => (
                 <Row key={news.id} className="news-item">
-                  <Col lg={4} className="images">
+                  <div className="images">
                     <Link to={`/newsdetail/${news.id}`}>
                       <img src={news.anhdaidien} alt={news.tieude}></img>
                     </Link>
-                  </Col>
-                  <Col lg={8}>
+                  </div>
+                  <div>
                     <div className="main-title">
                       <Link to={`/newsdetail/${news.id}`}> {news.tieude}</Link>
                     </div>
                     <p className="summary-content">{news.noidungtomtat}</p>
-                  </Col>
+                  </div>
                 </Row>
               ))}
-            </div>
+            </Col>
           )
       )}
     </div>

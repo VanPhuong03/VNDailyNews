@@ -43,7 +43,14 @@ function Header() {
     setSearchTerm(""); // Xóa giá trị của searchTerm
     searchInputRef.current.focus(); // Focus vào input sau khi tìm kiếm
     closeMenu();
+
+    // searchInputRef.current.blur(); // Rời khỏi input sau khi tìm kiếm
+
   };
+
+  // const handleInputFocus = () => {
+  //   setSearchTerm(""); 
+  // };
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -88,6 +95,7 @@ function Header() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 ref={searchInputRef}
+                // onFocus={handleSearch}
               />
               <button
                 className="btn btn-outline-success my-2 my-sm-0"

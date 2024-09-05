@@ -78,21 +78,21 @@ const SearchPage = () => {
               <CurrentTime />
             </div>
           </div>
-          <h1>Kết quả tìm kiếm cho "{searchValue}"</h1>
+          <h3>Kết quả tìm kiếm cho "{searchValue}"</h3>
           <ul>
             {results.map((news) => (
               <Row key={news.id} className="news-item">
-                <Col lg={4} className="images">
+                <div className="images">
                   <Link to={`/newsdetail/${news.id}`}>
                     <img src={news.anhdaidien} alt={news.tieude}></img>
                   </Link>
-                </Col>
-                <Col lg={8}>
+                </div>
+                <div>
                   <div className="main-title">
                     <Link to={`/newsdetail/${news.id}`}> {news.tieude}</Link>
                   </div>
                   <p className="summary-content">{news.noidungtomtat}</p>
-                </Col>
+                </div>
               </Row>
             ))}
           </ul>

@@ -13,7 +13,7 @@
       .title {
         padding-top: 10px;
         .main-title {
-          font-size: 25px;
+          font-size: 24px;
           font-weight: 500;
         }
         .summary-content {
@@ -293,6 +293,9 @@
           bottom: 0;
           left: 0;
         }
+      }
+      >div{
+        padding: 0;
       }
     }
     .home {

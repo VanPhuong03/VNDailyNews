@@ -7,7 +7,7 @@ import "./index.scss";
 
 const NewsSlider = ({ newsMostViewedList }) => {
   const settings = {
-    // dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -23,6 +23,7 @@ const NewsSlider = ({ newsMostViewedList }) => {
   if (newsMostViewedList.length < 3) {
     return (
       <div className="news-list d-flex ">
+      <h4>NHIỀU NGƯỜI ĐỌC</h4>
         {newsMostViewedList.map((newslist) => (
           <div key={newslist.id} className="news-item">
             <Link to={`/newsdetail/${newslist.id}`}>
@@ -40,6 +41,7 @@ const NewsSlider = ({ newsMostViewedList }) => {
   }
   return (
     <div className="news-slider">
+      <h4>NHIỀU NGƯỜI ĐỌC</h4>
       <Slider {...settings}>
         {newsMostViewedList.map((newslist) => (
           <div key={newslist.id} className="news-item">

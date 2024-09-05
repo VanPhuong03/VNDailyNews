@@ -2,6 +2,9 @@
   margin-bottom: 20px;
   .nav {
     margin-bottom: 15px;
+    p{
+      padding-top: 2px;
+    }
     ul {
       li {
         a {
@@ -16,6 +19,7 @@
         }
         .tag {
           color: var(--primary-color);
+          padding-right: 10px;
         }
       }
     }
@@ -36,6 +40,7 @@
     color: #252525;
   }
   .content-details {
+    border-bottom: 3px solid #e3e3e3;
     table tbody tr td {
       text-align: center;
       text-wrap: nowrap;
@@ -101,4 +106,15 @@
       font-size: 14px;
     }
   }
+  .posting-date{
+    margin-top: 20px;
+    p{
+      color: #959595;
+      font-size: 14px;
+      font-style: italic;
+    }
+  }
+}
+@media (max-width: 992px) {
+
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
@@ -14,11 +14,11 @@ function LatestNews() {
 
   useEffect(() => {
     const getLatestNews = async () => {
-      setLoading(true)
+      setLoading(true);
       try {
         const data = await fetchLatestNews();
         setNews(data);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.error("Có lỗi xảy ra khi gọi API:", error);
       }
@@ -26,31 +26,54 @@ function LatestNews() {
     getLatestNews();
   }, []);
 
-  useDocumentTitle("Tin tức mới nhất - Hệ thống tin tức 24h")
+  useDocumentTitle("Tin tức mới nhất - Hệ thống tin tức 24h");
 
   return (
     <div className="container content">
       <Row>
         <Col lg={9} className="latest-news">
           <h1>Tin tức mới nhất </h1>
-          <div>
+          <div className=" col desktop">
             {newsList.map((news, index) => (
               <Row
                 key={news.id}
                 className={`news-item ${index === 0 ? "first-news-item" : ""}`}
               >
-                <Col lg={4} className="images">
+                <div className="images">
+                  <a href={`/newsdetail/${news.id}`}>
+                    <img src={news.anhdaidien} alt={news.tieude}></img>
+                  </a>
+                </div>
+                <div className="title">
+                  <div className="main-title">
+                    <a href={`/newsdetail/${news.id}`}> {news.tieude}</a>
+                  </div>
+                  <p className="summary-content">{news.noidungtomtat}</p>
+                </div>
+              </Row>
+            ))}
+          </div>
+          <div className="mobile">
+            {newsList.map((news, index) => (
+              <div
+                key={news.id}
+                className={`news-item news-item-${index + 1}`}
+              >
+                <div className="images">
                   <Link to={`/newsdetail/${news.id}`}>
                     <img src={news.anhdaidien} alt={news.tieude}></img>
                   </Link>
-                </Col>
-                <Col lg={8} className="title">
-                  <div className="main-title">
-                    <Link to={`/newsdetail/${news.id}`}> {news.tieude}</Link>
-                  </div>
-                  <p className="summary-content">{news.noidungtomtat}</p>
-                </Col>
-              </Row>
+                </div>
+                <div className="title">
+                  <Link
+                    to={`/newsdetail/${news.id}`}
+                    className="main-title"
+                  >
+                    {news.tieude}
+                  </Link>
+                </div>
+                {/* <p>{newslist.noidungtomtat}</p> */}
+              </div>
             ))}
           </div>
         </Col>

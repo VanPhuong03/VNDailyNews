@@ -58,7 +58,7 @@
       max-width: none;
     }
     .summary-content{
-      display: none;
+      display: none !important;
     }
   }
 
@@ -76,5 +76,28 @@
     height: 3rem;
     border-width: 0.4em;
     border-color: var(--primary-color) transparent transparent transparent; /* Thay đổi màu sắc của spinner */
+  }
+}
+
+.summary-content {
+  line-height: 20px;
+  color: var(--text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.main-title {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--black-color);
+  transition: all ease 0.3s;
+  font-weight: 600;
+  &:hover {
+    color: var(--primary-color);
   }
 }

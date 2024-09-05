@@ -33,24 +33,47 @@ function RecommenedNews() {
       <Row>
         <Col lg={9} className="latest-news">
           <h1>Tin tức đề xuất</h1>
-          <div>
+          <div className=" col desktop">
             {newsList.map((news, index) => (
               <Row
                 key={news.id}
                 className={`news-item ${index === 0 ? "first-news-item" : ""}`}
               >
-                <Col lg={4} className="images">
+                <div className="images">
+                  <a href={`/newsdetail/${news.id}`}>
+                    <img src={news.anhdaidien} alt={news.tieude}></img>
+                  </a>
+                </div>
+                <div className="title">
+                  <div className="main-title">
+                    <a href={`/newsdetail/${news.id}`}> {news.tieude}</a>
+                  </div>
+                  <p className="summary-content">{news.noidungtomtat}</p>
+                </div>
+              </Row>
+            ))}
+          </div>
+          <div className="mobile">
+            {newsList.map((news, index) => (
+              <div
+                key={news.id}
+                className={`news-item news-item-${index + 1}`}
+              >
+                <div className="images">
                   <Link to={`/newsdetail/${news.id}`}>
                     <img src={news.anhdaidien} alt={news.tieude}></img>
                   </Link>
-                </Col>
-                <Col lg={8} className="title">
-                  <div className="main-title">
-                    <Link to={`/newsdetail/${news.id}`}> {news.tieude}</Link>
-                  </div>
-                  <p className="summary-content">{news.noidungtomtat}</p>
-                </Col>
-              </Row>
+                </div>
+                <div className="title">
+                  <Link
+                    to={`/newsdetail/${news.id}`}
+                    className="main-title"
+                  >
+                    {news.tieude}
+                  </Link>
+                </div>
+                {/* <p>{newslist.noidungtomtat}</p> */}
+              </div>
             ))}
           </div>
         </Col>

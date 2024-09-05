@@ -14,7 +14,7 @@
         height: auto;
       }
     }
-
+    
     .news-item-1 {
       grid-column: 2 / 5; /* Chiếm 3 cột ở giữa */
       grid-row: span 2; /* Chiếm cả hai hàng */
@@ -118,17 +118,38 @@
       .news-item-1 {
         flex-direction: column;
         width: 100%;
+        margin-bottom: 20px;
+        .main-title {
+          font-size: 24px;
+        }
       }
-
-      .news-item-1 img {
-        width: 100%;
-        height: auto; /* Maintain the aspect ratio */
+      .news-item-1{
+        .img{
+          position: relative;
+          padding-top: 66.66%;
+          img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            object-fit: cover;
+            top: 0;
+            bottom: 0;
+            left: 0;
+          }
+        }
       }
-      .news-item:not(.news-item-1) img {
-        max-width: 150px;
-        margin: 0 15px 0 0;
-        height: 100% !important;
-        object-fit: cover;
+      .news-item:not(.news-item-1)  {
+        .imgs{
+          flex: 0 0 150px;
+          max-width: 150px;
+          margin: 0 15px 0 0;
+          max-height: 100px;
+          img{
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+          }
+      }
       }
       .main-title {
         color: black;

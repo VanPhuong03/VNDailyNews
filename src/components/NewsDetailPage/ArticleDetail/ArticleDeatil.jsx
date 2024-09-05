@@ -168,6 +168,9 @@ const ArticleDetail = ({ inforNews, tags }) => {
         {Array.isArray(contentDetails) &&
           contentDetails.map((content, index) => renderContent(content, index))}
       </div>
+      <div className="posting-date">
+      <p>Ngày đăng: {inforNews.ngaydang}</p>
+      </div>
     </div>
   );
 };
