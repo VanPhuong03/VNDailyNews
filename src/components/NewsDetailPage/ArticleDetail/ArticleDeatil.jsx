@@ -128,7 +128,7 @@ const ArticleDetail = ({ inforNews, tags }) => {
 
     const lightbox = new PhotoSwipeLightbox({
       gallery: "#photo-swipe-gallery",
-      children: "a",
+      children: "a:has(img)",
       pswpModule: () => import("photoswipe"),
       padding: { top: 20, bottom: 20, left: 20, right: 20 },
       wheelToZoom: true,

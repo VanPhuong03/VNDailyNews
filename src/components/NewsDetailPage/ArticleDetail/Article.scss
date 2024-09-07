@@ -115,6 +115,19 @@
     }
   }
 }
-@media (max-width: 992px) {
-
+@media (max-width: 1200px) {
+  .content-details{
+    .richtext-content{
+      >div{
+        width: 100% !important;
+      }
+      figure{
+        width: 100% !important;
+        text-align: center;
+        img{
+          margin: 0 !important;
+        }
+      }
+    }
+  }
 }

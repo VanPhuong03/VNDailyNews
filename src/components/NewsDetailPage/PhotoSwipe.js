@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import 'photoswipe/style.css';
+import React, { useEffect, useState } from "react";
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import "photoswipe/style.css";
 
 const PhotoSwipeComponent = ({ images }) => {
   const [imageSizes, setImageSizes] = useState({});
@@ -26,9 +26,9 @@ const PhotoSwipeComponent = ({ images }) => {
 
   useEffect(() => {
     const lightbox = new PhotoSwipeLightbox({
-      gallery: '#photo-swipe-gallery',
-      children: 'a',
-      pswpModule: () => import('photoswipe'),
+      gallery: "#photo-swipe-gallery",
+      children: "a:has(img)",
+      pswpModule: () => import("photoswipe"),
       padding: { top: 20, bottom: 20, left: 20, right: 20 },
       wheelToZoom: true, // cho phép dùng con lăn để zoom ảnh
     });
