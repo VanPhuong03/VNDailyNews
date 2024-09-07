@@ -13,7 +13,7 @@ function NewsByTag({ newsByTagListOfCategory }) {
         (newslist) =>
           newslist.news.length > 0 && (  // thể loại nào không có bài đăng thì sẽ không hiển thị
             <Col key={newslist.id} className="mt-5">
-              <h2 className="row"><Link to={`/tags/${newslist.id}`}>{newslist.ten}</Link></h2>
+              <h3 className="row"><Link to={`/tags/${newslist.id}`}>{newslist.ten}</Link></h3>
               {newslist.news.map((news) => (
                 <Row key={news.id} className="news-item">
                   <div className="images">

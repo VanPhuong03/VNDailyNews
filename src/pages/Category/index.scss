@@ -125,46 +125,76 @@
       color: var(--primary-color);
     }
   }
-
 }
 @media (max-width: 1200px) {
-  .header-category{
-    padding: 0 10px !important;
-    ul{
-      align-items: unset !important;
-      flex-direction: column;
-      .icon-home{
-        .icon{
-          img{
+  .header-category {
+    padding: 5px 5px !important;
+    ul {
+      .icon-home {
+        width: 140px !important;
+        .icon {
+          img {
             width: 25px;
           }
-          span{
+          span {
             margin: 0 7px !important;
           }
         }
-      }
-      .tags-wrapper{
-        .tags{
-          overflow-y: auto;
-          padding-bottom: 5px;
-          .tag{
-            a{
-              padding: 0 20px 0 0;
-              font-size: 14px;
-            }
-          }
+        .title-category{
+          white-space: nowrap;
         }
-        .more-tags{
-          top:30% !important;
-          height: 20px;
+      }
+    }
+    .tags-wrapper {
+      padding-bottom: 2px;
+      .tags {
+        overflow-y: auto;
+        .tag {
+          a {
+            padding: 0 20px 0 0 !important;
+            font-size: 14px;
+          }
         }
       }
     }
   }
+  // .header-category{
+  //   padding: 0 10px !important;
+  //   ul{
+  //     align-items: unset !important;
+  //     flex-direction: column;
+  //     .icon-home{
+  //       .icon{
+  //         img{
+  //           width: 25px;
+  //         }
+  //         span{
+  //           margin: 0 7px !important;
+  //         }
+  //       }
+  //     }
+  //     .tags-wrapper{
+  //       .tags{
+  //         overflow-y: auto;
+  //         padding-bottom: 5px;
+  //         .tag{
+  //           a{
+  //             padding: 0 20px 0 0;
+  //             font-size: 14px;
+  //           }
+  //         }
+  //       }
+  //       .more-tags{
+  //         top:30% !important;
+  //         height: 20px;
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 @media (max-width: 768px) {
-  .news-slider{
+  .news-slider {
     width: 741px;
     .slick-arrow {
       display: none !important;
@@ -172,14 +202,13 @@
   }
 }
 @media (max-width: 992px) {
-
   .category-page .content-right {
-    order: 1; 
+    order: 1;
   }
 
   .category-page .content-left {
     margin-top: 20px;
-    order: 2; 
+    order: 2;
   }
 
   .category-page .responsive {
