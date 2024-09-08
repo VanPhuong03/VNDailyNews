@@ -6,9 +6,9 @@ import Col from "react-bootstrap/Col";
 import { Link, useLocation } from "react-router-dom";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
-import CurrentTime from "../../components/CurrentTime";
+import CurrentTime from "@components/CurrentTime";
 import API_ENDPOINTS from "../../config/api";
-import useDocumentTitle from "../../hooks/useDocumentTitle";
+import useDocumentTitle from "@hooks/useDocumentTitle";
 import Spinner from "react-bootstrap/Spinner";
 import "./index.scss";
 

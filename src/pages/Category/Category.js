@@ -7,10 +7,10 @@ import NewsNewList from "@components/CategoryPage/NewsNewList/NewsNewList";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import NewsMostViewedList from "@components/CategoryPage/NewsMostViewedList/NewsMostViewedList";
-import useDocumentTitle from "../../hooks/useDocumentTitle";
+import useDocumentTitle from "@hooks/useDocumentTitle";
 import "./index.scss";
 import images from "@assets/imgs";
-import { fetchCategoryPage } from "../../services/newsService";
+import { fetchCategoryPage } from "@services/newsService";
 import Spinner from "react-bootstrap/Spinner";
 
 function CategoryPage() {

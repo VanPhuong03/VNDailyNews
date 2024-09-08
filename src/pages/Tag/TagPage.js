@@ -4,11 +4,11 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { fetchTagData } from "../../services/newsService";
+import { fetchTagData } from "@services/newsService";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
-import useDocumentTitle from "../../hooks/useDocumentTitle";
-import CurrentTime from "../../components/CurrentTime";
+import useDocumentTitle from "@hooks/useDocumentTitle";
+import CurrentTime from "@components/CurrentTime";
 import Spinner from "react-bootstrap/Spinner";
 import "./index.scss";
 

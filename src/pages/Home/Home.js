@@ -3,10 +3,10 @@ import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import useDocumentTitle from "../../hooks/useDocumentTitle";
-import { fetchDashboardNews } from "../../services/newsService";
+import { fetchDashboardNews } from "@services/newsService";
 import RecommenNewsList from "@components/RecommenNewsList/RecommenNewsList";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
+import useDocumentTitle from "@hooks/useDocumentTitle";
 import Spinner from "react-bootstrap/Spinner";
 import "./Home.scss";
 
@@ -53,7 +53,7 @@ function Home() {
           document.documentElement.offsetHeight - 2 &&
         hasMore
       ) {
-        setLoading(true)
+        setLoading(true);
         setPage((prevPage) => prevPage + 1);
       }
     };

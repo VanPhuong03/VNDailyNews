@@ -7,7 +7,7 @@ import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 import PhotoSwipeComponent from "../PhotoSwipe"; // Đảm bảo đường dẫn chính xác
 
-const ArticleDetail = ({ inforNews, tags }) => {
+const ArticleDetail = ({ inforNews, tags, user }) => {
   const renderContent = (content, index) => {
     switch (content.type) {
       case "text default":
@@ -25,18 +25,18 @@ const ArticleDetail = ({ inforNews, tags }) => {
           </p>
         );
       case "title default":
-        return <h2 key={index}>{content.value}</h2>;
+        return <p key={index}>{content.value}</p>;
       case "title italic":
         return (
-          <h2 key={index} style={{ fontStyle: "italic" }}>
+          <p key={index} style={{ fontStyle: "italic" }}>
             {content.value}
-          </h2>
+          </p>
         );
       case "title bold":
         return (
-          <h2 key={index} style={{ fontWeight: "bold" }}>
+          <p key={index} style={{ fontWeight: "bold" }}>
             {content.value}
-          </h2>
+          </p>
         );
       case "image":
         return (
@@ -168,8 +168,9 @@ const ArticleDetail = ({ inforNews, tags }) => {
         {Array.isArray(contentDetails) &&
           contentDetails.map((content, index) => renderContent(content, index))}
       </div>
-      <div className="posting-date">
+      <div className="posting-date d-flex justify-content-between">
       <p>Ngày đăng: {inforNews.ngaydang}</p>
+      <strong className="author" >Theo: {user.tenhienthi}</strong>
       </div>
     </div>
   );

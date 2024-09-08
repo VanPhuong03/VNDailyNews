@@ -2,13 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { fetchArticleById, updateViewCount } from "../../services/newsService";
+import { fetchArticleById, updateViewCount } from "@services/newsService";
 import ArticleDetail from "@components/NewsDetailPage/ArticleDetail/ArticleDeatil";
 import SimilarNews from "@components/NewsDetailPage/SimilarNews/SimilarNews";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
 import ShareButton from "@components/NewsDetailPage/ShareButton";
-import useDocumentTitle from "../../hooks/useDocumentTitle";
+import useDocumentTitle from "@hooks/useDocumentTitle";
 import Spinner from "react-bootstrap/Spinner";
 
 const NewsDetailPage = () => {
@@ -60,14 +60,14 @@ const NewsDetailPage = () => {
         </div>
       </div>
     );
-  const { inforNews, tags, newsSimilarList } = article;
+  const { inforNews, tags, newsSimilarList, user } = article;
   const articleUrl = `${window.location.origin}/news/${id}`;
 
   return (
     <div className="news-detail-page container content">
       <Row>
         <Col lg={9}>
-          <ArticleDetail inforNews={inforNews} tags={tags} />
+          <ArticleDetail inforNews={inforNews} tags={tags} user={user} />
           <div className="share-news">
             <ShareButton url={articleUrl} title={inforNews.title} />
           </div>

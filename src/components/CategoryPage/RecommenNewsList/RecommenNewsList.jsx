@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import { Link, useNavigate } from "react-router-dom";
-import { fetchRecommendedNews } from "../../../services/newsService";
+import { fetchRecommendedNews } from "@services/newsService";
+import images from "@assets/imgs";
+
 function RecommenNewsList() {
   const [newslist, setNews] = useState([]);
   const navigate = useNavigate();
@@ -22,7 +24,11 @@ function RecommenNewsList() {
   };
 
   if (newslist.length === 0) {
-    return null;
+    return ( 
+      <div className="logo-recom">
+        <img src={images.logo} alt="VNDailyNews" className="rotate-image"/>
+      </div>
+    );
   }
 
   return (

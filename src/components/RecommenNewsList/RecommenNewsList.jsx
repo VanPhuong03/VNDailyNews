@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 // import Col from "react-bootstrap/Col";
 import { Link, useNavigate } from "react-router-dom";
-import { fetchRecommendedNews } from "../../services/newsService";
+import { fetchRecommendedNews } from "@services/newsService";
 import "./index.scss";
+import images from "@assets/imgs";
 
 function RecommenNewsList({ setTopViewedNews }) {
   const [newslist, setNews] = useState([]);
@@ -28,7 +29,11 @@ function RecommenNewsList({ setTopViewedNews }) {
   };
 
   if (newslist.length === 0) {
-    return null;
+    return ( 
+      <div className="logo-recom">
+        <img src={images.logo} alt="VNDailyNews" className="rotate-image"/>
+      </div>
+    );
   }
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import error from "../../assets/imgs/404.png";
+import error from "@assets/imgs/404.png";
 import "./index.scss";
 
 const NotFoundPage = () => {
