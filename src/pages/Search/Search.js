@@ -1,13 +1,12 @@
 // SearchPage.js
-import React, { useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link, useLocation } from "react-router-dom";
 import LatestNewsList from "@components/LatestNewsList/LatestNewsList";
 import RecommenNewsList from "@components/CategoryPage/RecommenNewsList/RecommenNewsList";
 import CurrentTime from "@components/CurrentTime";
-import API_ENDPOINTS from "../../config/api";
+import { fetchSearchData } from "@services/newsService";
 import useDocumentTitle from "@hooks/useDocumentTitle";
 import Spinner from "react-bootstrap/Spinner";
 import "./index.scss";
@@ -19,23 +18,33 @@ function useQuery() {
 const SearchPage = () => {
   const query = useQuery();
   const searchValue = query.get("query");
-  const [results, setResults] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const [results, setResults] = useState([]);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${API_ENDPOINTS.NEWS}/by-search?limit=10&page=1&searchValue=${searchValue}`
-        );
-        const data = response.data;
+    setResults([]);
+    setPage(1);
+    setHasMore(true);
+  },[searchValue]);
 
-        if (data && Array.isArray(data.newsList)) {
-          setResults(data.newsList);
+
+  useEffect(() => {
+    const getSearchData = async () =>{
+      setLoading(true)
+      try {
+        const data = await fetchSearchData(page, searchValue);
+        if(data && Array.isArray(data.newsList)) {
+          if(data.newsList.length === 0) {
+            setHasMore(false);
+          } else {
+            setResults((prevData) => [...prevData, ...data.newsList]);
+          }
         } else {
           setResults([]);
-          console.error("Unexpected response format: ", data);
+          console.error("Định dạng không đúng:", data);
         }
       } catch (error) {
         setError(error);
@@ -43,19 +52,35 @@ const SearchPage = () => {
         setLoading(false);
       }
     };
+    if( hasMore) {
+      getSearchData();
+    }
+  },[searchValue, hasMore, page]);
 
-    fetchData();
-  }, [searchValue]);
+  useEffect(() => {
+    const handleScroll = () => {
+      if(
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 2 &&
+        hasMore &&
+        !loading
+      ) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  },[hasMore, loading])
 
   useDocumentTitle("Tìm kiếm - Hệ thống tin tức 24h");
 
-  if (loading)
+  if (loading && page === 1)
     return (
-      <p className="container content">
+      <div className="container content">
         <div className="loading-spinner">
           <Spinner animation="border" />
         </div>
-      </p>
+      </div>
     );
   if (error) return <p>Error: {error.message}</p>;
 
@@ -97,11 +122,16 @@ const SearchPage = () => {
             ))}
           </ul>
         </Col>
-        <Col lg={3}>
+        <Col lg={3} className="content-right">
           <LatestNewsList />
           <RecommenNewsList />
         </Col>
       </Row>
+      {loading && page > 1 && (
+        <div className="loading-spinner">
+          <Spinner animation="border" />
+        </div>
+      )}
     </div>
   );
 };

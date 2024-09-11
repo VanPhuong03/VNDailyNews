@@ -25,3 +25,13 @@
         align-items: center;
     }
 }
+
+@media (max-width: 1200px) {
+    .share-dropdown{
+        .share-button{
+            width: 100% !important;
+            justify-content:center !important;
+            padding: 10px
+        }
+    }
+}

@@ -23,7 +23,7 @@ const NewsSlider = ({ newsMostViewedList }) => {
   if (newsMostViewedList.length < 3) {
     return (
       <div className="news-list d-flex ">
-      <h4>NHIỀU NGƯỜI ĐỌC</h4>
+        <div className="header row">NHIỀU NGƯỜI ĐỌC</div>
         {newsMostViewedList.map((newslist) => (
           <div key={newslist.id} className="news-item">
             <Link to={`/newsdetail/${newslist.id}`}>
@@ -41,7 +41,7 @@ const NewsSlider = ({ newsMostViewedList }) => {
   }
   return (
     <div className="news-slider">
-      <h4>NHIỀU NGƯỜI ĐỌC</h4>
+      <div className="header">NHIỀU NGƯỜI ĐỌC</div>
       <Slider {...settings}>
         {newsMostViewedList.map((newslist) => (
           <div key={newslist.id} className="news-item">

@@ -185,11 +185,11 @@ function TagPage() {
           </Row>
         </Col>
         {loading && (
-          <p>
+          <div>
             <div className="loading-spinner">
               <Spinner animation="border" />
             </div>
-          </p>
+          </div>
         )}
       </Row>
     </div>

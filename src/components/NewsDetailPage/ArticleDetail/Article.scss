@@ -40,7 +40,10 @@
     color: #252525;
   }
   .content-details {
-    border-bottom: 3px solid #e3e3e3;
+    border-bottom: 3px solid var(--primary-color);
+    p{
+      text-align: justify;
+    }
     table tbody tr td {
       text-align: center;
       text-wrap: nowrap;
@@ -123,6 +126,10 @@
   }
 }
 @media (max-width: 1200px) {
+ .article-detail{
+  .title{
+    font-size: 24px;
+  }
   .content-details{
     .richtext-content{
       >div{
@@ -137,4 +144,5 @@
       }
     }
   }
+ }
 }

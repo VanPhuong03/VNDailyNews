@@ -9,7 +9,7 @@ const SimilarNews = ({ newsSimilarList }) => {
   // console.log(newsSimilarList)
   return (
     <div className="similar-articles container ">
-      {/* <h2>Bài viết tương tự</h2> */}
+      <div className="header row">TIN LIÊN QUAN</div>
       <div>
         {newsSimilarList.map((news) => (
           <Row key={news.id} className="news-item">

@@ -6,6 +6,7 @@ import "froala-editor/css/froala_editor.pkgd.min.css";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 import PhotoSwipeComponent from "../PhotoSwipe"; // Đảm bảo đường dẫn chính xác
+import { format } from "date-fns";
 
 const ArticleDetail = ({ inforNews, tags, user }) => {
   const renderContent = (content, index) => {
@@ -112,6 +113,7 @@ const ArticleDetail = ({ inforNews, tags, user }) => {
   };
 
   const contentDetails = JSON.parse(inforNews.noidungchitiet);
+  const formatDate = format(new Date(inforNews.ngaydang), 'dd/MM/yyy HH:mm');
 
   useEffect(() => {
     const images = document.querySelectorAll(".richtext-content img");
@@ -161,7 +163,7 @@ const ArticleDetail = ({ inforNews, tags, user }) => {
         </div>
       </div>
       <p className="title">{inforNews.tiede}</p>
-      <p className="summary-content">
+      <p className="summary-content-title">
         <strong>{inforNews.noidungtomtat}</strong>
       </p>
       <div id="photo-swipe-gallery" className="content-details fr-view">
@@ -169,8 +171,8 @@ const ArticleDetail = ({ inforNews, tags, user }) => {
           contentDetails.map((content, index) => renderContent(content, index))}
       </div>
       <div className="posting-date d-flex justify-content-between">
-      <p>Ngày đăng: {inforNews.ngaydang}</p>
-      <strong className="author" >Theo: {user.tenhienthi}</strong>
+        <p>Ngày đăng: {formatDate}</p>
+        <strong className="author">Tác giả: {user.tenhienthi}</strong>
       </div>
     </div>
   );

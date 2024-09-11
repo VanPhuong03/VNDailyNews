@@ -164,7 +164,7 @@ function Home() {
         </Col>
       </Row>
       <Row>
-        <Col div className="news-by-category2">
+        <Col className="news-by-category2">
           {homedata.slice(4).map(
             (category) =>
               category.news.length > 0 && (

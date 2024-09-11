@@ -4,6 +4,7 @@ import HeaderTop from "@components/Layout/Header/HeaderTop";
 import Footer from "@components/Layout/Footer/Footer";
 import { SearchProvider } from "./components/SearchContext";
 import { MenuProvider } from "./components/MenuContext";
+import ScrollToTopButton from "./components/ScrollTopButton";
 import routesConfig from "./routes/routesConfig";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
               </Routes>
             </div>
             <Footer />
+            <ScrollToTopButton/>
           </Router>
         </SearchProvider>
       </MenuProvider>

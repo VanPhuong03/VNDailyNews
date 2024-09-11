@@ -101,3 +101,16 @@ export const fetchRecommendedNews = async (limit = 10) => {
     throw error;
   }
 };
+
+// call api tìm kiếm tin tức
+export const fetchSearchData = async (page = 1, searchValue) => {
+  try {
+    const response = await axios.get(
+      `${API_ENDPOINTS.NEWS}/by-search?limit=10&page=${page}&searchValue=${searchValue}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Có lỗi xảy ra khi tìm kiếm:", error);
+    throw error;
+  }
+}

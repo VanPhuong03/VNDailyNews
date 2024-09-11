@@ -1,5 +1,11 @@
 .similar-articles {
     margin-top: 30px;
+    .header{
+        font-size: 22px;
+        color: #51AE5A;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
     .news-item{
         display: flex;
         flex-wrap: nowrap;
