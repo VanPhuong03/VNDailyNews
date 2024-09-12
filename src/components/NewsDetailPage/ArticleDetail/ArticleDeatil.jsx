@@ -12,7 +12,7 @@ const ArticleDetail = ({ inforNews, tags, user }) => {
   const renderContent = (content, index) => {
     switch (content.type) {
       case "text default":
-        return <p key={index}>{content.value}</p>;
+        return <p key={index} style={{ whiteSpace: "pre-line" }} >{content.value}</p>;
       case "text italic":
         return (
           <p key={index} style={{ fontStyle: "italic" }}>
