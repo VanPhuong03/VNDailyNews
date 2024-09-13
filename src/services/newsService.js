@@ -114,3 +114,19 @@ export const fetchSearchData = async (page = 1, searchValue) => {
     throw error;
   }
 }
+
+// export const updateViewCount = async (id) => {
+//   const viewedArticles =
+//     JSON.parse(localStorage.getItem("viewedArticles")) || [];
+
+//   if (!viewedArticles.includes(id)) {
+//     try {
+//       await axios.put(`${API_ENDPOINTS.NEWS}/${id}`);
+//       viewedArticles.push(id);
+//       // localStorage.setItem("viewedArticles", JSON.stringify(viewedArticles));
+//     } catch (error) {
+//       console.error("Đã xảy ra lỗi khi cập nhật số lượng lượt xem", error);
+//       throw error;
+//     }
+//   }
+// };

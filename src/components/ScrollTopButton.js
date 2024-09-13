@@ -22,6 +22,7 @@ const ScrollToTopButton = () => {
         height: "40px",
         border: " 1px solid #ebebeb",
       }}
+      className="go-to-top"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
